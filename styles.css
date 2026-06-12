@@ -49,8 +49,10 @@ button{font-family:inherit;cursor:pointer}
 .btn:active{transform:scale(.97)}
 .btn-fire{background:var(--fire);color:#160a02}
 .btn-fire:hover{background:var(--fire-soft)}
-.btn-ghost{border-color:var(--line-bright);color:var(--ink)}
+.btn-ghost{background:transparent;border-color:var(--line-bright);color:var(--ink)}
 .btn-ghost:hover{border-color:var(--silver);background:var(--bg-elev)}
+.btn-primary{background:var(--fire);color:#fff}
+.btn-primary:hover{background:#c85e20;color:#fff}
 .header-cta{display:flex;align-items:center;gap:14px}
 .nav-toggle{display:none;background:none;border:1px solid var(--line-bright);border-radius:10px;width:46px;height:46px;color:var(--ink)}
 .nav-toggle svg{width:22px;height:22px}
@@ -198,7 +200,7 @@ h2.section-title{font-size:clamp(1.8rem,4vw,3rem);font-weight:700;letter-spacing
 
 /* ---------- Responsive ---------- */
 @media (max-width:900px){
-  .nav,.header-cta .btn-ghost{display:none}
+  .nav,.header-cta .btn-ghost,.header-cta .btn-primary{display:none}
   .nav-toggle{display:inline-flex;align-items:center;justify-content:center}
   .header-cta{gap:10px}
   .nav.open{display:flex;position:absolute;top:74px;left:0;right:0;flex-direction:column;gap:0;
