@@ -1,20 +1,33 @@
 # FONGASCA S.L.
-> Empresa de instalación y mantenimiento de gas, fontanería y calefacción en Majadahonda, Madrid. Autorizada desde 1994.
+
+> Empresa instaladora y mantenedora de gas, fontanería
+> y calefacción en Majadahonda y el oeste de Madrid.
+> Autorizada desde 1994. E.G.A. nº 564.
 
 ## Servicios
-- Gas: instalación, mantenimiento, certificaciones, boletines, detección de fugas
-- Fontanería: instalación, reparación, reformas de baño y cocina
-- Calefacción: instalación de calderas, mantenimiento, radiadores
+
+- Gas: alta e instalación, mantenimiento, certificaciones,
+  boletines, detección de fugas
+- Fontanería: reparación de fugas, cambio de tuberías,
+  reforma de baño y cocina, grifería y sanitarios
+- Calefacción: instalación de calderas, mantenimiento anual,
+  aerotermia, radiadores y circuitos
 
 ## Zona de cobertura
-Majadahonda, Las Rozas, Boadilla del Monte, Pozuelo de Alarcón, Aravaca, Las Matas, Villanueva de la Cañada, Villanueva del Pardillo y resto de Madrid
+
+Majadahonda, Las Rozas, Boadilla del Monte,
+Pozuelo de Alarcón, Aravaca, Las Matas,
+Villanueva de la Cañada, Villanueva del Pardillo
 
 ## Contacto
+
 - Teléfono: 916 395 206
 - WhatsApp: 649 062 842
 - Email: fongascasl@fongascasl.net
 - Dirección: C. del Cid, 8, 28220 Majadahonda, Madrid
 - Horario: Lunes a Viernes 8:00-20:00
+- Web: https://nexusforgeia.github.io/WHITEMOON-FONGACASA-DEMO/
 
 ## Colaboradores autorizados
+
 Nedgia, Madrileña de Gas, Repsol, Iberdrola
