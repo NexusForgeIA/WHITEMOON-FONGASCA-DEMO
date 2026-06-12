@@ -308,18 +308,15 @@ h2.section-title{font-size:clamp(1.9rem,4.2vw,3.2rem);font-weight:700;letter-spa
 .zonas-list .z svg{width:16px;height:16px;color:var(--fire);flex:none}
 .zonas-note{margin-top:26px;color:var(--ink-faint);font-size:14.5px}
 
-/* ---------- Colaboradores ---------- */
-.partners-row{display:flex;flex-wrap:wrap;align-items:center;gap:clamp(20px,5vw,56px);margin-top:44px}
-.partner{
-  display:flex;align-items:center;justify-content:center;
-  height:62px;padding:0 28px;border-radius:12px;
-  border:1px solid var(--line);background:var(--bg-elev);
-  color:var(--silver);font-weight:700;letter-spacing:.02em;font-size:19px;
-  filter:saturate(.2);opacity:.85;transition:opacity .25s ease, filter .25s ease, border-color .25s ease;
-  flex:1 1 160px;min-width:150px;
-}
-.partner:hover{opacity:1;filter:saturate(1);border-color:var(--line-bright)}
-.partner b{color:var(--fire)}
+/* ---------- Colaboradores / Marcas (logos) ---------- */
+.logo-band{margin-top:clamp(28px,4vw,44px);background:rgba(255,255,255,0.03);
+  border-top:1px solid rgba(255,255,255,0.06);border-radius:16px;
+  padding:clamp(26px,3.5vw,40px) clamp(20px,3vw,32px)}
+.logo-label{text-align:center;color:var(--fire);font-size:12.5px;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;margin:0 0 28px}
+.logo-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:clamp(24px,4vw,40px)}
+.logo-row img{height:36px;width:auto;filter:brightness(0) invert(0.7);transition:filter .2s ease}
+.logo-row img:hover{filter:brightness(0) invert(1)}
 
 /* ---------- FAQ ---------- */
 .faq-wrap{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.4fr);gap:clamp(36px,6vw,72px);margin-top:clamp(36px,5vw,56px);align-items:start}
@@ -437,7 +434,8 @@ form.form{background:var(--bg);border:1px solid var(--line);border-radius:18px;p
   .hero-actions .btn{justify-content:center}
   .zonas-list{columns:1}
   .field-row{grid-template-columns:1fr}
-  .partner{flex-basis:100%}
+  .logo-row{gap:22px}
+  .logo-row img{height:30px}
   .footer-grid{grid-template-columns:1fr}
 }
 </style>
@@ -630,14 +628,35 @@ form.form{background:var(--bg);border:1px solid var(--line);border-radius:18px;p
 <section class="section wrap" id="colaboradores">
   <div class="section-head reveal">
     <span class="kicker">Respaldo</span>
-    <h2 class="section-title">Autorizados y reconocidos por las distribuidoras.</h2>
-    <p class="section-lead">Trabajamos como instaladores autorizados de las principales compañías de gas y energía que operan en Madrid.</p>
+    <h2 class="section-title">Autorizados por las distribuidoras y al día con las mejores marcas.</h2>
+    <p class="section-lead">Trabajamos como instaladores autorizados de las principales compañías de gas y agua de Madrid, e instalamos las marcas líderes de calderas.</p>
   </div>
-  <div class="partners-row reveal">
-    <div class="partner">Ned<b>gia</b></div>
-    <div class="partner">Madrileña<b>·</b>Gas</div>
-    <div class="partner"><b>Repsol</b></div>
-    <div class="partner">Iber<b>drola</b></div>
+
+  <!-- BLOQUE 1 — Colaboramos con -->
+  <div class="logo-band reveal">
+    <p class="logo-label">Colaboramos con</p>
+    <div class="logo-row">
+      <img src="https://fongascasl.net/wp-content/uploads/2022/03/nedgia.png" alt="Nedgia, distribuidora de gas natural" height="36" width="110" loading="lazy" onerror="this.style.display='none'">
+      <img src="https://fongascasl.net/wp-content/uploads/2022/03/Madrilena-de-Gas.png" alt="Madrileña de Gas, distribuidora de gas" height="36" width="120" loading="lazy" onerror="this.style.display='none'">
+      <img src="https://fongascasl.net/wp-content/uploads/2022/03/Repsol.png" alt="Repsol, distribuidora de gas y energía" height="36" width="100" loading="lazy" onerror="this.style.display='none'">
+      <img src="https://fongascasl.net/wp-content/uploads/2022/03/Iberdrola.png" alt="Iberdrola, compañía de energía" height="36" width="120" loading="lazy" onerror="this.style.display='none'">
+      <img src="https://fongascasl.net/wp-content/uploads/elementor/thumbs/imgi_4_logo-acciona-rk0glflhts3bm38tlf2y5kmk9tqneugviepw3nrtfc.png" alt="Acciona Aguas, gestión del agua" height="36" width="130" loading="lazy" onerror="this.style.display='none'">
+      <img src="https://fongascasl.net/wp-content/uploads/imgi_6_layout_set_logo.png" alt="Canal de Isabel II, gestión del agua en Madrid" height="36" width="130" loading="lazy" onerror="this.style.display='none'">
+      <img src="https://fongascasl.net/wp-content/uploads/imgi_1_logo2-1.png" alt="Colaborador de fontanería de FONGASCA" height="36" width="110" loading="lazy" onerror="this.style.display='none'">
+    </div>
+  </div>
+
+  <!-- BLOQUE 2 — Marcas con las que trabajamos -->
+  <div class="logo-band reveal">
+    <p class="logo-label">Marcas con las que trabajamos</p>
+    <div class="logo-row">
+      <img src="https://fongascasl.net/wp-content/uploads/imgi_1_sd-es-es-2379264-300x64.png" alt="Saunier Duval, calderas y calefacción" height="36" width="169" loading="lazy" onerror="this.style.display='none'">
+      <img src="https://fongascasl.net/wp-content/uploads/imgi_2_logo_alt.png" alt="Vaillant, calderas y calefacción" height="36" width="120" loading="lazy" onerror="this.style.display='none'">
+      <img src="https://fongascasl.net/wp-content/uploads/imgi_1_junkers_bosch.png" alt="Junkers Bosch, calderas y calefacción" height="36" width="150" loading="lazy" onerror="this.style.display='none'">
+      <img src="https://fongascasl.net/wp-content/uploads/elementor/thumbs/imgi_2_logo-dark-rkxqmn628mq9thnsar9kekesm9comnfzk6hhslnut4.png" alt="Ferroli, calderas y calefacción" height="36" width="110" loading="lazy" onerror="this.style.display='none'">
+      <img src="https://fongascasl.net/wp-content/uploads/imgi_31_default.png" alt="Wolf, sistemas de calefacción" height="36" width="100" loading="lazy" onerror="this.style.display='none'">
+      <img src="https://fongascasl.net/wp-content/uploads/elementor/thumbs/imgi_1_BAXI-rkxqmhj13mhp6xvjpkt46y30h6g6fmutn6btvi3ra4.png" alt="Baxi, calderas y calefacción" height="36" width="100" loading="lazy" onerror="this.style.display='none'">
+    </div>
   </div>
 </section>
 
