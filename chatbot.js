@@ -26,27 +26,21 @@
   var CALLMEBOT_PHONE = "34643199580";
   var CALLMEBOT_APIKEY = "";
 
-  /* ---------- Flujo de servicios ---------- */
-  var SERVICIOS = [
-    "Alta o Instalación Gas",
-    "Mantenimiento de Gas",
-    "Certificaciones y Boletines",
-    "Instalación de Caldera",
-    "Fuga o avería",
-    "Fontanería",
-    "Instalación Calefacción",
-    "Mantenimiento Calefacción",
-    "Reforma de baño",
-    "Reforma de cocina",
-    "Otros"
-  ];
+  /* ---------- Flujo de servicios (categoría → subservicio) ---------- */
+  var CATEGORIAS = ["🔥 Gas", "💧 Fontanería", "🌡️ Calefacción", "🔧 Otros servicios"];
+  var SUBSERVICIOS = {
+    "Gas": ["Alta o Instalación", "Mantenimiento / Revisión", "Certificaciones y Boletines", "Fuga o avería"],
+    "Fontanería": ["Reparación de fuga", "Reforma de baño", "Reforma de cocina", "Otros"],
+    "Calefacción": ["Instalación de caldera", "Mantenimiento anual", "Avería de caldera", "Aerotermia"],
+    "Otros servicios": ["Desatasco", "Cambio de tuberías", "Otros"]
+  };
   var REFORMAS = ["Reforma de baño", "Reforma de cocina"];
   var METROS = ["Menos de 5 m²", "5 - 10 m²", "10 - 20 m²", "Más de 20 m²"];
   var PRESUPUESTOS = ["Menos de 3.000€", "3.000€ - 6.000€", "6.000€ - 12.000€", "Más de 12.000€"];
-  var ZONAS = ["Majadahonda", "Las Rozas", "Boadilla", "Pozuelo", "Aravaca", "Otro Madrid"];
+  var ZONAS = ["Majadahonda", "Las Rozas", "Boadilla / Pozuelo", "Otro Madrid"];
 
   /* ---------- Estado ---------- */
-  var state = { servicio: "", reforma: false, m2: "", presupuesto: "", zona: "", nombre: "", telefono: "" };
+  var state = { categoria: "", servicio: "", reforma: false, m2: "", presupuesto: "", zona: "", nombre: "", telefono: "" };
   var els = {};
 
   /* ---------- Estilos ---------- */
@@ -62,7 +56,7 @@
     ".fon-fab[aria-expanded=true]{transform:scale(.9);opacity:.85}" +
 
     ".fon-panel{position:fixed;right:clamp(16px,3vw,28px);bottom:calc(clamp(16px,3vw,28px) + 74px);z-index:2147483000;" +
-      "width:min(380px,calc(100vw - 32px));height:min(580px,calc(100vh - 120px));" +
+      "width:min(320px,calc(100vw - 32px));height:min(480px,calc(100vh - 120px));" +
       "background:#0d0d0d;border:1px solid #2a2a2a;border-radius:18px;overflow:hidden;display:none;flex-direction:column;" +
       "font-family:'Sora',system-ui,-apple-system,sans-serif;color:#F5F5F5;" +
       "box-shadow:0 24px 60px rgba(0,0,0,.6);opacity:0;transform:translateY(14px) scale(.98);" +
@@ -91,13 +85,13 @@
     ".fon-mini{width:26px;height:26px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;" +
       "background:" + ACCENT + ";color:#160a02}" +
     ".fon-mini svg{width:15px;height:15px}" +
-    ".fon-bub{padding:11px 14px;border-radius:14px;font-size:14.5px;line-height:1.5;border:1px solid transparent;text-wrap:pretty;white-space:pre-line}" +
+    ".fon-bub{padding:10px 13px;border-radius:14px;font-size:13.5px;line-height:1.5;border:1px solid transparent;text-wrap:pretty;white-space:pre-line}" +
     ".fon-row.bot .fon-bub{background:#161616;border-color:#2a2a2a;border-bottom-left-radius:5px}" +
     ".fon-row.user .fon-bub{background:" + ACCENT + ";color:#160a02;font-weight:600;border-bottom-right-radius:5px}" +
 
-    ".fon-opts{display:flex;flex-wrap:wrap;gap:9px;align-self:flex-start;max-width:96%;padding-left:35px;margin-top:-2px}" +
-    ".fon-chip{background:#161616;border:1px solid #3a3a3a;color:#F5F5F5;font-family:inherit;font-size:14px;font-weight:500;" +
-      "padding:10px 15px;border-radius:11px;cursor:pointer;min-height:42px;transition:border-color .18s,background .18s,transform .12s}" +
+    ".fon-opts{display:flex;flex-wrap:wrap;gap:7px;align-self:flex-start;max-width:96%;padding-left:32px;margin-top:-2px}" +
+    ".fon-chip{background:#161616;border:1px solid #3a3a3a;color:#F5F5F5;font-family:inherit;font-size:13px;font-weight:500;" +
+      "padding:8px 13px;border-radius:10px;cursor:pointer;min-height:36px;transition:border-color .18s,background .18s,transform .12s}" +
     ".fon-chip:hover{border-color:" + ACCENT + ";background:#1d1d1d}" +
     ".fon-chip:active{transform:scale(.97)}" +
     ".fon-chip.urg{border-color:" + ACCENT + ";color:" + ACCENT + ";font-weight:600}" +
@@ -123,7 +117,7 @@
     "@media (prefers-reduced-motion: reduce){" +
       ".fon-panel,.fon-fab,.fon-chip,.fon-send{transition:none}" +
       ".fon-typing i{animation:none}.fon-body{scroll-behavior:auto}}" +
-    "@media (max-width:600px){.fon-panel{right:8px;left:8px;width:auto;bottom:84px;height:min(70vh,560px)}}";
+    "@media (max-width:600px){.fon-panel{right:8px;left:8px;width:auto;bottom:84px;height:min(68vh,480px)}}";
 
   /* ---------- Iconos ---------- */
   var WRENCH = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4 2.6-2.6z"/></svg>';
@@ -264,9 +258,19 @@
   var step = "";
 
   function startFlow() {
-    botMsg("Hola, soy Fon 👋 ¿Qué necesitas?", function () {
+    botMsg("Hola, soy Fon 👋 ¿En qué puedo ayudarte?", function () {
+      step = "categoria";
+      options(CATEGORIAS, pickCategoria);
+    });
+  }
+
+  function pickCategoria(label) {
+    var cat = label.replace(/^\S+\s+/, "").trim();
+    state.categoria = cat;
+    var q = cat === "Gas" ? "¿Qué necesitas con el gas?" : "¿Qué necesitas?";
+    botMsg(q, function () {
       step = "servicio";
-      options(SERVICIOS, pickServicio, "Fuga o avería");
+      options(SUBSERVICIOS[cat], pickServicio, "Fuga o avería");
     });
   }
 
@@ -274,7 +278,7 @@
     state.servicio = servicio;
     if (REFORMAS.indexOf(servicio) !== -1) {
       state.reforma = true;
-      botMsg("¿Cuántos m² tiene aproximadamente?", function () {
+      botMsg("¿Cuántos m² aproximadamente?", function () {
         step = "m2";
         options(METROS, pickMetros);
       });
@@ -285,7 +289,7 @@
 
   function pickMetros(m2) {
     state.m2 = m2;
-    botMsg("¿Tienes presupuesto estimado para la reforma?", function () {
+    botMsg("¿Presupuesto estimado?", function () {
       step = "presupuesto";
       options(PRESUPUESTOS, pickPresupuesto);
     });
@@ -345,14 +349,15 @@
 
   /* ---------- Supabase ---------- */
   function saveLead() {
+    var base = state.categoria + " · " + state.servicio;
     var mensaje = state.reforma
-      ? state.servicio + " · " + state.m2 + " · Presupuesto: " + state.presupuesto + " · Zona: " + state.zona
-      : state.servicio + " · Zona: " + state.zona;
+      ? base + " · " + state.m2 + " · Presupuesto: " + state.presupuesto + " · Zona: " + state.zona
+      : base + " · Zona: " + state.zona;
     var payload = {
       nombre: state.nombre,
       telefono: state.telefono,
       sector: "servicio-tecnico",
-      interes: state.servicio,
+      interes: base,
       mensaje: mensaje,
       origen: "fongasca-demo"
     };
@@ -382,7 +387,7 @@
       console.warn("[Fon] CallMeBot sin apikey: se omite el aviso por WhatsApp.");
       return;
     }
-    var lines = ["Nuevo lead FONGASCA (demo)", "Servicio: " + state.servicio];
+    var lines = ["Nuevo lead FONGASCA (demo)", "Categoria: " + state.categoria, "Servicio: " + state.servicio];
     if (state.reforma) {
       lines.push("m2: " + state.m2);
       lines.push("Presupuesto: " + state.presupuesto);
