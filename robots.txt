@@ -13,4 +13,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://nexusforgeia.github.io/WHITEMOON-FONGACASA-DEMO/sitemap.xml
+Sitemap: https://nexusforgeia.github.io/WHITEMOON-FONGASCA-DEMO/sitemap.xml
