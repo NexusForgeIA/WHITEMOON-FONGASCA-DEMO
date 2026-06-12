@@ -333,9 +333,7 @@ h2.section-title{font-size:clamp(1.9rem,4.2vw,3.2rem);font-weight:700;letter-spa
 
 /* ---------- Zonas ---------- */
 .zonas{background:var(--bg-elev);border-block:1px solid var(--line)}
-.zonas-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(36px,6vw,80px);align-items:center;margin-top:clamp(40px,6vw,60px)}
-.zonas-map{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line-bright);background:var(--bg)}
-.zonas-map iframe{display:block;width:100%;height:clamp(320px,42vw,440px);border:0;filter:grayscale(.4) contrast(1.05) brightness(.85)}
+.zonas-text{margin-top:clamp(40px,6vw,60px)}
 .zonas-list{columns:2;column-gap:32px}
 .zonas-list .z{
   break-inside:avoid;display:flex;align-items:center;gap:12px;
@@ -430,7 +428,7 @@ h2.section-title{font-size:clamp(1.9rem,4.2vw,3.2rem);font-weight:700;letter-spa
   .hero-stat{padding:16px}
   .svc{grid-template-columns:1fr;gap:24px}
   .svc:nth-child(even) .svc-visual{order:0}
-  .zonas-grid,.faq-wrap{grid-template-columns:1fr}
+  .faq-wrap{grid-template-columns:1fr}
   .faq-aside{position:static}
   .footer-grid{grid-template-columns:1fr 1fr}
   .footer-brand{grid-column:1/-1}
@@ -606,9 +604,8 @@ h2.section-title{font-size:clamp(1.9rem,4.2vw,3.2rem);font-weight:700;letter-spa
       <span class="kicker">Dónde trabajamos</span>
       <h2 class="section-title">Cubrimos Majadahonda y todo el oeste de Madrid.</h2>
     </div>
-    <div class="zonas-grid">
-      <div class="zonas-text reveal">
-        <ul class="zonas-list">
+    <div class="zonas-text reveal">
+      <ul class="zonas-list">
           <li class="z"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Majadahonda</li>
           <li class="z"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Las Rozas</li>
           <li class="z"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Boadilla del Monte</li>
@@ -619,12 +616,7 @@ h2.section-title{font-size:clamp(1.9rem,4.2vw,3.2rem);font-weight:700;letter-spa
           <li class="z"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Villanueva del Pardillo</li>
           <li class="z"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Resto de Madrid</li>
         </ul>
-        <p class="zonas-note">¿No ves tu municipio? Llámanos: si está en la Comunidad de Madrid, probablemente llegamos.</p>
-      </div>
-      <div class="zonas-map reveal">
-        <iframe title="Mapa de la zona de cobertura de FONGASCA en Majadahonda, Madrid" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-          src="https://www.openstreetmap.org/export/embed.html?bbox=-3.95%2C40.40%2C-3.78%2C40.52&layer=mapnik&marker=40.4703%2C-3.8851"></iframe>
-      </div>
+      <p class="zonas-note">¿No ves tu municipio? Llámanos: si está en la Comunidad de Madrid, probablemente llegamos.</p>
     </div>
   </div>
 </section>
