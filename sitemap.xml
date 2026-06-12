@@ -1,9 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://fongascasl.net/</loc>
+    <loc>https://nexusforgeia.github.io/WHITEMOON-FONGACASA-DEMO/</loc>
     <lastmod>2026-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://nexusforgeia.github.io/WHITEMOON-FONGACASA-DEMO/gas/</loc>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nexusforgeia.github.io/WHITEMOON-FONGACASA-DEMO/fontaneria/</loc>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nexusforgeia.github.io/WHITEMOON-FONGACASA-DEMO/calefaccion/</loc>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nexusforgeia.github.io/WHITEMOON-FONGACASA-DEMO/aviso-legal/</loc>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://nexusforgeia.github.io/WHITEMOON-FONGACASA-DEMO/blog/</loc>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nexusforgeia.github.io/WHITEMOON-FONGACASA-DEMO/blog/revision-instalacion-gas/</loc>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://nexusforgeia.github.io/WHITEMOON-FONGACASA-DEMO/blog/fuga-agua-oculta/</loc>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://nexusforgeia.github.io/WHITEMOON-FONGACASA-DEMO/blog/cuando-cambiar-caldera/</loc>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://nexusforgeia.github.io/WHITEMOON-FONGACASA-DEMO/blog/aerotermia-ventajas/</loc>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://nexusforgeia.github.io/WHITEMOON-FONGACASA-DEMO/blog/cambiar-banera-plato-ducha/</loc>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://nexusforgeia.github.io/WHITEMOON-FONGACASA-DEMO/blog/gas-natural-vs-propano-butano/</loc>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 </urlset>

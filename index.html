@@ -8,6 +8,7 @@
 <meta name="author" content="FONGASCA S.L.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="theme-color" content="#0d0d0d">
+<link rel="canonical" href="https://nexusforgeia.github.io/WHITEMOON-FONGACASA-DEMO/">
 
 <!-- GEO signals -->
 <meta name="geo.region" content="ES-MD">
@@ -35,6 +36,39 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://fongascasl.net">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- JSON-LD: LocalBusiness (sede + área de servicio) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "FONGASCA S.L.",
+  "url": "https://nexusforgeia.github.io/WHITEMOON-FONGACASA-DEMO/",
+  "logo": "https://fongascasl.net/wp-content/uploads/logo-fongasca-1.png",
+  "telephone": "916395206",
+  "email": "fongascasl@fongascasl.net",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "C. del Cid, 8",
+    "addressLocality": "Majadahonda",
+    "addressRegion": "Madrid",
+    "postalCode": "28220",
+    "addressCountry": "ES"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.4703,
+    "longitude": -3.8851
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+    "opens": "09:00",
+    "closes": "18:00"
+  },
+  "areaServed": "Majadahonda, Las Rozas, Boadilla del Monte, Pozuelo de Alarcón"
+}
+</script>
 
 <!-- JSON-LD: LocalBusiness + AggregateRating -->
 <script type="application/ld+json">
@@ -159,7 +193,6 @@
   --line:#2a2a2a;
   --line-bright:#3a3a3a;
   --maxw:1280px;
-  --z-fab:60;
   --z-header:50;
   --z-overlay:40;
 }
@@ -194,14 +227,15 @@ button{font-family:inherit;cursor:pointer}
 }
 .header-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;height:74px}
 .brand{display:flex;align-items:center;gap:14px;min-width:0}
-.brand img{height:38px;width:auto}
+.brand img{height:60px;width:auto}
 .brand-fallback{font-weight:800;letter-spacing:.02em;font-size:20px;color:var(--ink)}
 .brand-fallback span{color:var(--fire)}
 .nav{display:flex;align-items:center;gap:34px}
-.nav a{font-size:15px;font-weight:500;color:var(--ink-dim);position:relative;padding-block:6px;transition:color .2s ease}
-.nav a:hover{color:var(--ink)}
-.nav a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--fire);transition:width .25s ease}
-.nav a:hover::after{width:100%}
+.nav a,.nav button{font-size:15px;font-weight:500;color:var(--ink-dim);position:relative;padding-block:6px;transition:color .2s ease}
+.nav button{background:none;border:0;font-family:inherit;cursor:pointer;padding-inline:0}
+.nav a:hover,.nav button:hover{color:var(--ink)}
+.nav a::after,.nav button::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--fire);transition:width .25s ease}
+.nav a:hover::after,.nav button:hover::after{width:100%}
 .btn{
   display:inline-flex;align-items:center;gap:9px;
   font-weight:600;font-size:15px;border-radius:999px;
@@ -212,8 +246,10 @@ button{font-family:inherit;cursor:pointer}
 .btn:active{transform:scale(.97)}
 .btn-fire{background:var(--fire);color:#160a02}
 .btn-fire:hover{background:var(--fire-soft)}
-.btn-ghost{border-color:var(--line-bright);color:var(--ink)}
+.btn-ghost{background:transparent;border-color:var(--line-bright);color:var(--ink)}
 .btn-ghost:hover{border-color:var(--silver);background:var(--bg-elev)}
+.btn-primary{background:var(--fire);color:#fff}
+.btn-primary:hover{background:#c85e20;color:#fff}
 .header-cta{display:flex;align-items:center;gap:14px}
 .nav-toggle{display:none;background:none;border:1px solid var(--line-bright);border-radius:10px;width:46px;height:46px;color:var(--ink)}
 .nav-toggle svg{width:22px;height:22px}
@@ -291,16 +327,13 @@ h2.section-title{font-size:clamp(1.9rem,4.2vw,3.2rem);font-weight:700;letter-spa
   background:linear-gradient(160deg,var(--bg-elev-2),var(--bg-elev));
   aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;
 }
-.svc-visual .icon{width:clamp(96px,18vw,168px);height:auto;color:var(--silver);opacity:.92}
-.svc-visual .icon .fire{color:var(--fire)}
-.svc-visual::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 70% 20%,rgba(232,116,42,.14),transparent 55%)}
-.svc-visual .badge{position:absolute;left:18px;bottom:18px;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--silver);background:rgba(13,13,13,.7);border:1px solid var(--line-bright);padding:7px 12px;border-radius:8px;backdrop-filter:blur(4px)}
+.svc-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:contrast(1.04) brightness(.82) saturate(1.02)}
+.svc-visual::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(circle at 70% 20%,rgba(232,116,42,.14),transparent 55%)}
+.svc-visual .badge{position:absolute;z-index:2;left:18px;bottom:18px;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--silver);background:rgba(13,13,13,.7);border:1px solid var(--line-bright);padding:7px 12px;border-radius:8px;backdrop-filter:blur(4px)}
 
 /* ---------- Zonas ---------- */
 .zonas{background:var(--bg-elev);border-block:1px solid var(--line)}
-.zonas-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(36px,6vw,80px);align-items:center;margin-top:clamp(40px,6vw,60px)}
-.zonas-map{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line-bright);background:var(--bg)}
-.zonas-map iframe{display:block;width:100%;height:clamp(320px,42vw,440px);border:0;filter:grayscale(.4) contrast(1.05) brightness(.85)}
+.zonas-text{margin-top:clamp(40px,6vw,60px)}
 .zonas-list{columns:2;column-gap:32px}
 .zonas-list .z{
   break-inside:avoid;display:flex;align-items:center;gap:12px;
@@ -309,18 +342,17 @@ h2.section-title{font-size:clamp(1.9rem,4.2vw,3.2rem);font-weight:700;letter-spa
 .zonas-list .z svg{width:16px;height:16px;color:var(--fire);flex:none}
 .zonas-note{margin-top:26px;color:var(--ink-faint);font-size:14.5px}
 
-/* ---------- Colaboradores ---------- */
-.partners-row{display:flex;flex-wrap:wrap;align-items:center;gap:clamp(20px,5vw,56px);margin-top:44px}
-.partner{
-  display:flex;align-items:center;justify-content:center;
-  height:62px;padding:0 28px;border-radius:12px;
-  border:1px solid var(--line);background:var(--bg-elev);
-  color:var(--silver);font-weight:700;letter-spacing:.02em;font-size:19px;
-  filter:saturate(.2);opacity:.85;transition:opacity .25s ease, filter .25s ease, border-color .25s ease;
-  flex:1 1 160px;min-width:150px;
-}
-.partner:hover{opacity:1;filter:saturate(1);border-color:var(--line-bright)}
-.partner b{color:var(--fire)}
+/* ---------- Colaboradores / Marcas (logos) ---------- */
+.logo-band{margin-top:clamp(28px,4vw,44px);background:rgba(255,255,255,0.03);
+  border-top:1px solid rgba(255,255,255,0.06);border-radius:16px;
+  padding:clamp(26px,3.5vw,40px) clamp(20px,3vw,32px)}
+.logo-label{text-align:center;color:var(--fire);font-size:12.5px;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;margin:0 0 28px}
+.logo-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:clamp(24px,4vw,40px)}
+.logo-row img{height:36px;width:auto;filter:brightness(0) invert(0.7);transition:filter .2s ease}
+.logo-row img:hover{filter:brightness(0) invert(1)}
+.logo-row .logo-text{height:36px;width:auto;color:#b3b3b3;transition:color .2s ease}
+.logo-row .logo-text:hover{color:#fff}
 
 /* ---------- FAQ ---------- */
 .faq-wrap{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.4fr);gap:clamp(36px,6vw,72px);margin-top:clamp(36px,5vw,56px);align-items:start}
@@ -345,54 +377,17 @@ h2.section-title{font-size:clamp(1.9rem,4.2vw,3.2rem);font-weight:700;letter-spa
 .faq-a p{margin:0;padding:0 40px 26px 4px;color:var(--ink-dim);max-width:64ch;text-wrap:pretty}
 /* native details animation-safe: content visible by default */
 
-/* ---------- Contacto ---------- */
-.contact{background:var(--bg-elev);border-top:1px solid var(--line)}
-.contact-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(40px,6vw,80px);margin-top:clamp(40px,5vw,56px);align-items:start}
-.contact-info .lead{color:var(--ink-dim);max-width:42ch;margin:18px 0 32px}
-.contact-lines{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:2px}
-.contact-lines li a, .contact-lines li div{
-  display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);
-}
-.contact-lines .ci{flex:none;width:42px;height:42px;border-radius:11px;border:1px solid var(--line-bright);display:flex;align-items:center;justify-content:center;color:var(--fire);background:var(--bg)}
-.contact-lines .ci svg{width:20px;height:20px}
-.contact-lines .ct b{display:block;font-size:16px;font-weight:600;color:var(--ink)}
-.contact-lines .ct span{display:block;font-size:13.5px;color:var(--ink-faint)}
-.contact-lines li a:hover .ct b{color:var(--fire-soft)}
-
-form.form{background:var(--bg);border:1px solid var(--line);border-radius:18px;padding:clamp(24px,3vw,36px)}
-.form h3{margin:0 0 6px;font-size:1.45rem;font-weight:700;letter-spacing:-.01em}
-.form .fsub{color:var(--ink-faint);font-size:14.5px;margin:0 0 26px}
-.field{margin-bottom:18px}
-.field label{display:block;font-size:13.5px;font-weight:600;color:var(--ink-dim);margin-bottom:8px}
-.field label .req{color:var(--fire)}
-.field input,.field select,.field textarea{
-  width:100%;background:var(--bg-elev-2);border:1px solid var(--line-bright);
-  color:var(--ink);border-radius:11px;padding:13px 15px;font-size:15.5px;font-family:inherit;
-  min-height:48px;transition:border-color .18s ease, background .18s ease;
-}
-.field textarea{min-height:120px;resize:vertical}
-.field input::placeholder,.field textarea::placeholder{color:#6f6f6f}
-.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--fire);background:var(--bg)}
-.field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23C0C0C0' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 15px center;padding-right:42px}
-.field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.form .btn{width:100%;justify-content:center;padding:15px;font-size:16px;margin-top:6px}
-.form-note{font-size:12.5px;color:var(--ink-faint);margin:14px 0 0;text-align:center}
-.form-success{display:none;align-items:center;gap:12px;background:rgba(232,116,42,.1);border:1px solid var(--fire);color:var(--ink);padding:14px 16px;border-radius:11px;font-size:14.5px;margin-bottom:20px}
-.form-success svg{width:20px;height:20px;color:var(--fire);flex:none}
-.form-success.show{display:flex}
-
-/* ---------- WhatsApp FAB ---------- */
-.fab{
-  position:fixed;right:clamp(16px,3vw,28px);bottom:clamp(16px,3vw,28px);z-index:var(--z-fab);
-  display:inline-flex;align-items:center;gap:11px;
-  background:#1f8f3a;color:#fff;font-weight:600;font-size:15px;
-  padding:13px 20px 13px 16px;border-radius:999px;
-  box-shadow:0 14px 34px rgba(0,0,0,.5), 0 0 0 6px rgba(31,143,58,.16);
-  transition:transform .15s ease, box-shadow .2s ease;
-}
-.fab:hover{transform:translateY(-2px)}
-.fab svg{width:24px;height:24px}
-.fab .fab-txt{white-space:nowrap}
+/* ---------- CTA chat ---------- */
+.cta-chat{background:var(--bg-elev);border-top:1px solid var(--line);text-align:center;
+  padding-block:clamp(64px,10vh,120px)}
+.cta-chat .wrap{max-width:760px}
+.cta-chat h2{font-size:clamp(1.9rem,4.2vw,3rem);font-weight:700;letter-spacing:-.025em;line-height:1.05;margin:0;text-wrap:balance}
+.cta-chat p{color:var(--ink-dim);font-size:1.06rem;max-width:46ch;margin:18px auto 32px;text-wrap:pretty}
+.cta-chat button{display:inline-flex;align-items:center;gap:9px;font-family:inherit;font-weight:600;font-size:16px;
+  border:0;border-radius:999px;padding:16px 30px;min-height:48px;cursor:pointer;background:var(--fire);color:#160a02;
+  transition:transform .15s ease, background .2s ease}
+.cta-chat button:hover{background:var(--fire-soft)}
+.cta-chat button:active{transform:scale(.97)}
 
 /* ---------- Footer ---------- */
 .site-footer{border-top:1px solid var(--line);background:var(--bg);padding-block:clamp(56px,8vw,80px) 30px}
@@ -403,7 +398,7 @@ form.form{background:var(--bg);border:1px solid var(--line);border-radius:18px;p
 .socials a{width:44px;height:44px;border:1px solid var(--line-bright);border-radius:11px;display:flex;align-items:center;justify-content:center;color:var(--silver);transition:color .2s ease,border-color .2s ease}
 .socials a:hover{color:var(--fire);border-color:var(--fire)}
 .socials svg{width:20px;height:20px}
-.footer-col h4{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin:0 0 18px;font-weight:600}
+.footer-col h3{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin:0 0 18px;font-weight:600}
 .footer-col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
 .footer-col a,.footer-col li{color:var(--ink-dim);font-size:14.5px}
 .footer-col a:hover{color:var(--ink)}
@@ -421,19 +416,19 @@ form.form{background:var(--bg);border:1px solid var(--line);border-radius:18px;p
 
 /* ---------- Responsive ---------- */
 @media (max-width:900px){
-  .nav,.header-cta .btn-ghost{display:none}
+  .nav,.header-cta .btn-ghost,.header-cta .btn-primary{display:none}
   .nav-toggle{display:inline-flex;align-items:center;justify-content:center}
   .header-cta{gap:10px}
   .nav.open{display:flex;position:absolute;top:74px;left:0;right:0;flex-direction:column;gap:0;
     background:var(--bg);border-bottom:1px solid var(--line);padding:8px clamp(20px,5vw,64px) 18px}
-  .nav.open a{padding:15px 0;border-bottom:1px solid var(--line);width:100%}
-  .nav.open a::after{display:none}
+  .nav.open a,.nav.open button{padding:15px 0;border-bottom:1px solid var(--line);width:100%;text-align:left}
+  .nav.open a::after,.nav.open button::after{display:none}
   .hero-grid{grid-template-columns:1fr;gap:40px}
   .hero-stats{grid-template-columns:repeat(3,1fr)}
   .hero-stat{padding:16px}
   .svc{grid-template-columns:1fr;gap:24px}
   .svc:nth-child(even) .svc-visual{order:0}
-  .zonas-grid,.faq-wrap,.contact-grid{grid-template-columns:1fr}
+  .faq-wrap{grid-template-columns:1fr}
   .faq-aside{position:static}
   .footer-grid{grid-template-columns:1fr 1fr}
   .footer-brand{grid-column:1/-1}
@@ -441,7 +436,7 @@ form.form{background:var(--bg);border:1px solid var(--line);border-radius:18px;p
 @media (max-width:600px){
   .header-inner{height:64px}
   .site-header{}
-  .brand img{height:32px}
+  .brand img{height:44px}
   .hero{min-height:auto;padding-top:20px}
   .hero-stats{grid-template-columns:1fr;gap:1px}
   .hero-stat{display:flex;align-items:baseline;gap:14px}
@@ -451,10 +446,9 @@ form.form{background:var(--bg);border:1px solid var(--line);border-radius:18px;p
   .hero-actions .btn{justify-content:center}
   .zonas-list{columns:1}
   .field-row{grid-template-columns:1fr}
-  .partner{flex-basis:100%}
+  .logo-row{gap:22px}
+  .logo-row img,.logo-row .logo-text{height:30px}
   .footer-grid{grid-template-columns:1fr}
-  .fab .fab-txt{display:none}
-  .fab{padding:14px;border-radius:50%}
 }
 </style>
 </head>
@@ -469,14 +463,15 @@ form.form{background:var(--bg);border:1px solid var(--line);border-radius:18px;p
       <span class="brand-fallback" style="display:none">FON<span>GASCA</span></span>
     </a>
     <nav class="nav" id="nav" aria-label="Navegación principal">
-      <a href="#gas">Gas</a>
-      <a href="#fontaneria">Fontanería</a>
-      <a href="#calefaccion">Calefacción</a>
+      <a href="gas/">Gas</a>
+      <a href="fontaneria/">Fontanería</a>
+      <a href="calefaccion/">Calefacción</a>
+      <a href="blog/">Blog</a>
       <a href="#zonas">Zonas</a>
-      <a href="#contacto">Contacto</a>
+      <a href="#footer">Contacto</a>
     </nav>
     <div class="header-cta">
-      <a class="btn btn-ghost" href="#contacto">Pedir presupuesto</a>
+      <button type="button" class="btn btn-primary" onclick="document.getElementById('fon-toggle')?.click()">Pedir presupuesto</button>
       <a class="btn btn-fire" href="tel:+34916395206">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         Llamar ahora
@@ -544,14 +539,12 @@ form.form{background:var(--bg);border:1px solid var(--line);border-radius:18px;p
           <li>Detección de fugas</li>
           <li>Puesta en marcha de aparatos</li>
         </ul>
-        <a class="svc-link" href="#contacto">Solicitar revisión de gas
+        <a class="svc-link" href="gas/">Ver servicios de gas
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
       <div class="svc-visual">
-        <svg class="icon" viewBox="0 0 120 120" fill="none" aria-hidden="true">
-          <path class="fire" d="M60 18c4 14-8 20-8 32a18 18 0 0 0 18 18c10 0 18-8 18-19 0-15-14-22-14-36-7 6-8 14-6 22-6-2-9-9-8-19-6 5-9 12-8 21" fill="currentColor" opacity=".95"/>
-          <path d="M44 70c0 20 11 32 26 32s26-12 26-30" stroke="#C0C0C0" stroke-width="3" stroke-linecap="round" opacity=".5"/>
-        </svg>
+        <img src="https://fongascasl.net/wp-content/uploads/Instalacion-y-Mantenimiento-de-Gas-Fongasca-Majadahonda-Madrid.jpg"
+             alt="Instalación y mantenimiento de gas Majadahonda" width="600" height="450" loading="lazy">
         <span class="badge">Autorizado · Nedgia · Repsol</span>
       </div>
     </article>
@@ -559,12 +552,8 @@ form.form{background:var(--bg);border:1px solid var(--line);border-radius:18px;p
     <!-- FONTANERIA -->
     <article class="svc reveal" id="fontaneria">
       <div class="svc-visual">
-        <svg class="icon" viewBox="0 0 120 120" fill="none" aria-hidden="true">
-          <path d="M30 30h22v18H38v24a8 8 0 0 0 8 8h16" stroke="#C0C0C0" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-          <rect x="22" y="22" width="38" height="16" rx="4" stroke="#C0C0C0" stroke-width="6"/>
-          <path class="fire" d="M62 80h26m-13-13v26" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
-          <circle class="fire" cx="75" cy="80" r="20" stroke="currentColor" stroke-width="4" opacity=".4"/>
-        </svg>
+        <img src="https://fongascasl.net/wp-content/uploads/reformas-de-banos-y-cambio-banera-por-plato-ducha-fongasca-Majadahonda.jpg"
+             alt="Fontanería y reformas de baño Majadahonda" width="600" height="450" loading="lazy">
         <span class="badge">Reformas · Averías · Reparación</span>
       </div>
       <div class="svc-body">
@@ -578,7 +567,7 @@ form.form{background:var(--bg);border:1px solid var(--line);border-radius:18px;p
           <li>Cambio de tuberías</li>
           <li>Grifería y sanitarios</li>
         </ul>
-        <a class="svc-link" href="#contacto">Pedir presupuesto de reforma
+        <a class="svc-link" href="fontaneria/">Ver servicios de fontanería
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
     </article>
@@ -596,16 +585,12 @@ form.form{background:var(--bg);border:1px solid var(--line);border-radius:18px;p
           <li>Radiadores y circuitos</li>
           <li>Puesta a punto pre-invierno</li>
         </ul>
-        <a class="svc-link" href="#contacto">Reservar mantenimiento de caldera
+        <a class="svc-link" href="calefaccion/">Ver servicios de calefacción
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
       <div class="svc-visual">
-        <svg class="icon" viewBox="0 0 120 120" fill="none" aria-hidden="true">
-          <rect x="34" y="24" width="52" height="58" rx="8" stroke="#C0C0C0" stroke-width="6"/>
-          <rect x="46" y="36" width="28" height="18" rx="3" stroke="#C0C0C0" stroke-width="4" opacity=".6"/>
-          <path class="fire" d="M60 60c3 5-3 7-3 11a6 6 0 0 0 12 0c0-5-6-7-5-13-3 2-4 4-4 7" fill="currentColor"/>
-          <path d="M44 82v14M60 82v14M76 82v14" stroke="#C0C0C0" stroke-width="6" stroke-linecap="round" opacity=".5"/>
-        </svg>
+        <img src="https://fongascasl.net/wp-content/uploads/confort-instalacion-calefaccion-Fongasca.jpg"
+             alt="Instalación calefacción y calderas Majadahonda" width="600" height="450" loading="lazy">
         <span class="badge">Gas · Condensación · Garantía</span>
       </div>
     </article>
@@ -619,9 +604,8 @@ form.form{background:var(--bg);border:1px solid var(--line);border-radius:18px;p
       <span class="kicker">Dónde trabajamos</span>
       <h2 class="section-title">Cubrimos Majadahonda y todo el oeste de Madrid.</h2>
     </div>
-    <div class="zonas-grid">
-      <div class="zonas-text reveal">
-        <ul class="zonas-list">
+    <div class="zonas-text reveal">
+      <ul class="zonas-list">
           <li class="z"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Majadahonda</li>
           <li class="z"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Las Rozas</li>
           <li class="z"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Boadilla del Monte</li>
@@ -632,12 +616,7 @@ form.form{background:var(--bg);border:1px solid var(--line);border-radius:18px;p
           <li class="z"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Villanueva del Pardillo</li>
           <li class="z"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Resto de Madrid</li>
         </ul>
-        <p class="zonas-note">¿No ves tu municipio? Llámanos: si está en la Comunidad de Madrid, probablemente llegamos.</p>
-      </div>
-      <div class="zonas-map reveal">
-        <iframe title="Mapa de la zona de cobertura de FONGASCA en Majadahonda, Madrid" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-          src="https://www.openstreetmap.org/export/embed.html?bbox=-3.95%2C40.40%2C-3.78%2C40.52&layer=mapnik&marker=40.4703%2C-3.8851"></iframe>
-      </div>
+      <p class="zonas-note">¿No ves tu municipio? Llámanos: si está en la Comunidad de Madrid, probablemente llegamos.</p>
     </div>
   </div>
 </section>
@@ -646,14 +625,34 @@ form.form{background:var(--bg);border:1px solid var(--line);border-radius:18px;p
 <section class="section wrap" id="colaboradores">
   <div class="section-head reveal">
     <span class="kicker">Respaldo</span>
-    <h2 class="section-title">Autorizados y reconocidos por las distribuidoras.</h2>
-    <p class="section-lead">Trabajamos como instaladores autorizados de las principales compañías de gas y energía que operan en Madrid.</p>
+    <h2 class="section-title">Autorizados por las distribuidoras y al día con las mejores marcas.</h2>
+    <p class="section-lead">Trabajamos como instaladores autorizados de las principales compañías de gas y agua de Madrid, e instalamos las marcas líderes de calderas.</p>
   </div>
-  <div class="partners-row reveal">
-    <div class="partner">Ned<b>gia</b></div>
-    <div class="partner">Madrileña<b>·</b>Gas</div>
-    <div class="partner"><b>Repsol</b></div>
-    <div class="partner">Iber<b>drola</b></div>
+
+  <!-- BLOQUE 1 — Colaboramos con -->
+  <div class="logo-band reveal">
+    <p class="logo-label">Colaboramos con</p>
+    <div class="logo-row">
+      <svg class="logo-text" viewBox="0 0 92 36" width="92" height="36" role="img" aria-label="Nedgia"><text x="0" y="26" textLength="92" lengthAdjust="spacingAndGlyphs" font-family="Sora,system-ui,sans-serif" font-weight="700" font-size="23" fill="currentColor">Nedgia</text></svg>
+      <svg class="logo-text" viewBox="0 0 168 36" width="168" height="36" role="img" aria-label="Madrileña de Gas"><text x="0" y="26" textLength="168" lengthAdjust="spacingAndGlyphs" font-family="Sora,system-ui,sans-serif" font-weight="700" font-size="23" fill="currentColor">Madrileña de Gas</text></svg>
+      <svg class="logo-text" viewBox="0 0 88 36" width="88" height="36" role="img" aria-label="Repsol"><text x="0" y="26" textLength="88" lengthAdjust="spacingAndGlyphs" font-family="Sora,system-ui,sans-serif" font-weight="700" font-size="23" fill="currentColor">Repsol</text></svg>
+      <svg class="logo-text" viewBox="0 0 112 36" width="112" height="36" role="img" aria-label="Iberdrola"><text x="0" y="26" textLength="112" lengthAdjust="spacingAndGlyphs" font-family="Sora,system-ui,sans-serif" font-weight="700" font-size="23" fill="currentColor">Iberdrola</text></svg>
+      <img src="https://fongascasl.net/wp-content/uploads/elementor/thumbs/imgi_4_logo-acciona-rk0glflhts3bm38tlf2y5kmk9tqneugviepw3nrtfc.png" alt="Acciona Aguas, gestión del agua" height="36" width="130" loading="lazy" onerror="this.style.display='none'">
+      <img src="https://fongascasl.net/wp-content/uploads/imgi_6_layout_set_logo.png" alt="Canal de Isabel II, gestión del agua en Madrid" height="36" width="130" loading="lazy" onerror="this.style.display='none'">
+    </div>
+  </div>
+
+  <!-- BLOQUE 2 — Marcas con las que trabajamos -->
+  <div class="logo-band reveal">
+    <p class="logo-label">Marcas con las que trabajamos</p>
+    <div class="logo-row">
+      <svg class="logo-text" viewBox="0 0 180 36" width="180" height="36" role="img" aria-label="Saunier Duval"><text x="0" y="26" textLength="180" lengthAdjust="spacingAndGlyphs" font-family="Sora,system-ui,sans-serif" font-weight="700" font-size="23" fill="currentColor">SAUNIER DUVAL</text></svg>
+      <svg class="logo-text" viewBox="0 0 112 36" width="112" height="36" role="img" aria-label="Vaillant"><text x="0" y="26" textLength="112" lengthAdjust="spacingAndGlyphs" font-family="Sora,system-ui,sans-serif" font-weight="700" font-size="23" fill="currentColor">VAILLANT</text></svg>
+      <img src="https://fongascasl.net/wp-content/uploads/imgi_1_junkers_bosch.png" alt="Junkers Bosch, calderas y calefacción" height="36" width="150" loading="lazy" onerror="this.style.display='none'">
+      <img src="https://fongascasl.net/wp-content/uploads/elementor/thumbs/imgi_2_logo-dark-rkxqmn628mq9thnsar9kekesm9comnfzk6hhslnut4.png" alt="Ferroli, calderas y calefacción" height="36" width="110" loading="lazy" onerror="this.style.display='none'">
+      <img src="https://fongascasl.net/wp-content/uploads/imgi_31_default.png" alt="Wolf, sistemas de calefacción" height="36" width="100" loading="lazy" onerror="this.style.display='none'">
+      <img src="https://fongascasl.net/wp-content/uploads/elementor/thumbs/imgi_1_BAXI-rkxqmhj13mhp6xvjpkt46y30h6g6fmutn6btvi3ra4.png" alt="Baxi, calderas y calefacción" height="36" width="100" loading="lazy" onerror="this.style.display='none'">
+    </div>
   </div>
 </section>
 
@@ -709,105 +708,19 @@ form.form{background:var(--bg);border:1px solid var(--line);border-radius:18px;p
   </div>
 </section>
 
-<!-- ============ CONTACTO ============ -->
-<section class="contact section" id="contacto">
+<!-- ============ CTA CHAT ============ -->
+<section class="cta-chat" id="contacto">
   <div class="wrap">
-    <div class="section-head reveal">
-      <span class="kicker">Hablemos</span>
-      <h2 class="section-title">Cuéntanos qué necesitas. Te respondemos hoy.</h2>
-    </div>
-    <div class="contact-grid">
-      <div class="contact-info reveal">
-        <p class="lead">Llámanos para una urgencia o déjanos los datos y te preparamos un presupuesto sin compromiso.</p>
-        <ul class="contact-lines">
-          <li>
-            <a href="tel:+34916395206">
-              <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
-              <span class="ct"><b>916 395 206 · 659 477 757</b><span>Teléfono y urgencias</span></span>
-            </a>
-          </li>
-          <li>
-            <a href="https://wa.me/34649062842" target="_blank" rel="noopener">
-              <span class="ci"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.06c-.24.68-1.4 1.3-1.93 1.38-.49.07-1.13.1-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.79-4.17-4.94-4.37-.14-.19-1.18-1.57-1.18-2.99s.75-2.12 1.01-2.41c.27-.29.58-.36.78-.36.19 0 .39 0 .56.01.18.01.42-.07.66.5.24.59.83 2.03.9 2.18.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.16-.29.36-.42.49-.14.14-.28.29-.12.57.16.29.71 1.17 1.53 1.9 1.05.94 1.94 1.23 2.22 1.37.27.14.43.12.59-.07.16-.19.68-.79.86-1.07.18-.27.36-.22.61-.13.24.09 1.55.73 1.82.86.27.14.45.2.51.31.07.11.07.63-.17 1.31z"/></svg></span>
-              <span class="ct"><b>649 062 842</b><span>WhatsApp</span></span>
-            </a>
-          </li>
-          <li>
-            <a href="mailto:fongascasl@fongascasl.net">
-              <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>
-              <span class="ct"><b>fongascasl@fongascasl.net</b><span>Email</span></span>
-            </a>
-          </li>
-          <li>
-            <a href="https://maps.google.com/?q=C.+del+Cid+8,+28220+Majadahonda,+Madrid" target="_blank" rel="noopener">
-              <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-              <span class="ct"><b>C. del Cid, 8 · 28220 Majadahonda</b><span>Madrid · L-V 8:00–20:00</span></span>
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <form class="form reveal" id="contactForm" novalidate>
-        <h3>Pide tu presupuesto</h3>
-        <p class="fsub">Respuesta el mismo día laborable. Sin compromiso.</p>
-        <div class="form-success" id="formSuccess" role="status" aria-live="polite">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-          <span>¡Gracias! Hemos recibido tu solicitud. Te llamaremos en breve.</span>
-        </div>
-        <div class="field-row">
-          <div class="field">
-            <label for="f-nombre">Nombre <span class="req" aria-hidden="true">*</span></label>
-            <input id="f-nombre" name="nombre" type="text" autocomplete="name" placeholder="Tu nombre" required>
-          </div>
-          <div class="field">
-            <label for="f-tel">Teléfono <span class="req" aria-hidden="true">*</span></label>
-            <input id="f-tel" name="telefono" type="tel" autocomplete="tel" inputmode="tel" placeholder="6XX XXX XXX" required>
-          </div>
-        </div>
-        <div class="field-row">
-          <div class="field">
-            <label for="f-zona">Zona</label>
-            <select id="f-zona" name="zona">
-              <option value="">Selecciona tu municipio</option>
-              <option>Majadahonda</option>
-              <option>Las Rozas</option>
-              <option>Boadilla del Monte</option>
-              <option>Pozuelo de Alarcón</option>
-              <option>Aravaca</option>
-              <option>Las Matas</option>
-              <option>Villanueva de la Cañada</option>
-              <option>Villanueva del Pardillo</option>
-              <option>Otra zona de Madrid</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="f-motivo">Motivo</label>
-            <select id="f-motivo" name="motivo">
-              <option value="">¿Qué necesitas?</option>
-              <option>Urgencia de gas / fuga</option>
-              <option>Revisión o certificado de gas</option>
-              <option>Fontanería / fuga de agua</option>
-              <option>Reforma de baño o cocina</option>
-              <option>Caldera / calefacción</option>
-              <option>Otro</option>
-            </select>
-          </div>
-        </div>
-        <div class="field">
-          <label for="f-msg">Mensaje</label>
-          <textarea id="f-msg" name="mensaje" placeholder="Cuéntanos brevemente qué necesitas y cuándo te viene bien."></textarea>
-        </div>
-        <button class="btn btn-fire" type="submit">Enviar solicitud</button>
-        <p class="form-note">Demo sin envío real. En producción los datos llegan al equipo de FONGASCA.</p>
-      </form>
-    </div>
+    <h2>¿Hablamos?</h2>
+    <p>Cuéntanos qué necesitas por el chat y te respondemos el mismo día laborable.</p>
+    <button onclick="document.getElementById('fon-toggle')?.click()">Abrir chat →</button>
   </div>
 </section>
 
 </main>
 
 <!-- ============ FOOTER ============ -->
-<footer class="site-footer">
+<footer class="site-footer" id="footer">
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-brand">
@@ -826,16 +739,17 @@ form.form{background:var(--bg);border:1px solid var(--line);border-radius:18px;p
         </div>
       </div>
       <div class="footer-col">
-        <h4>Servicios</h4>
+        <h3>Servicios</h3>
         <ul>
-          <li><a href="#gas">Gas e instalaciones</a></li>
-          <li><a href="#fontaneria">Fontanería</a></li>
-          <li><a href="#calefaccion">Calefacción y calderas</a></li>
+          <li><a href="gas/">Gas e instalaciones</a></li>
+          <li><a href="fontaneria/">Fontanería</a></li>
+          <li><a href="calefaccion/">Calefacción y calderas</a></li>
+          <li><a href="blog/">Blog</a></li>
           <li><a href="#faq">Preguntas frecuentes</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Contacto</h4>
+        <h3>Contacto</h3>
         <ul>
           <li><a href="tel:+34916395206">916 395 206</a></li>
           <li><a href="tel:+34659477757">659 477 757</a></li>
@@ -846,16 +760,13 @@ form.form{background:var(--bg);border:1px solid var(--line);border-radius:18px;p
     </div>
     <div class="footer-bottom">
       <span>© <span id="year">2026</span> Instalaciones y Mantenimientos Fongasca S.L. · Demo</span>
-      <span><a href="#inicio">Aviso legal</a> · <a href="#inicio">Política de privacidad</a> · CIF B-XXXXXXXX</span>
+      <span><a href="aviso-legal/">Aviso legal</a> · <a href="aviso-legal/">Política de privacidad</a> · CIF B81042822</span>
     </div>
   </div>
 </footer>
 
-<!-- WhatsApp FAB -->
-<a class="fab" href="https://wa.me/34649062842?text=Hola%20FONGASCA%2C%20necesito%20informaci%C3%B3n%20sobre..." target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
-  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.06c-.24.68-1.4 1.3-1.93 1.38-.49.07-1.13.1-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.79-4.17-4.94-4.37-.14-.19-1.18-1.57-1.18-2.99s.75-2.12 1.01-2.41c.27-.29.58-.36.78-.36.19 0 .39 0 .56.01.18.01.42-.07.66.5.24.59.83 2.03.9 2.18.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.16-.29.36-.42.49-.14.14-.28.29-.12.57.16.29.71 1.17 1.53 1.9 1.05.94 1.94 1.23 2.22 1.37.27.14.43.12.59-.07.16-.19.68-.79.86-1.07.18-.27.36-.22.61-.13.24.09 1.55.73 1.82.86.27.14.45.2.51.31.07.11.07.63-.17 1.31z"/></svg>
-  <span class="fab-txt">WhatsApp</span>
-</a>
+<!-- Fon — asistente guiado de FONGASCA (captación de leads a Supabase) -->
+<script src="chatbot.js" defer></script>
 
 <script>
 (function(){
@@ -871,7 +782,7 @@ form.form{background:var(--bg);border:1px solid var(--line);border-radius:18px;p
       toggle.setAttribute('aria-expanded',open?'true':'false');
     });
     nav.addEventListener('click',function(e){
-      if(e.target.tagName==='A'){nav.classList.remove('open');toggle.setAttribute('aria-expanded','false');}
+      if(e.target.closest('a,button')){nav.classList.remove('open');toggle.setAttribute('aria-expanded','false');}
     });
   }
 
@@ -894,24 +805,6 @@ form.form{background:var(--bg);border:1px solid var(--line);border-radius:18px;p
     reveals.forEach(function(el){io.observe(el);});
   } else {
     reveals.forEach(function(el){el.classList.add('in');});
-  }
-
-  // Demo form
-  var form=document.getElementById('contactForm'), ok=document.getElementById('formSuccess');
-  if(form){
-    form.addEventListener('submit',function(e){
-      e.preventDefault();
-      var nombre=form.nombre, tel=form.telefono, valid=true;
-      [nombre,tel].forEach(function(f){
-        if(!f.value.trim()){f.style.borderColor='#E8742A';valid=false;}
-        else{f.style.borderColor='';}
-      });
-      if(!valid){nombre.value.trim()?tel.focus():nombre.focus();return;}
-      if(ok){ok.classList.add('show');}
-      form.querySelector('button[type=submit]').textContent='Solicitud enviada';
-      form.reset();
-      if(ok){ok.scrollIntoView({behavior:'smooth',block:'center'});}
-    });
   }
 })();
 </script>
