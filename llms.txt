@@ -5,7 +5,10 @@
 > Autorizada desde 1994. E.G.A. nº 564.
 
 ## Servicios
+<<<<<<< fix/robots-llms-raiz
+=======
 
+>>>>>>> claude/lucid-noether-lysiki
 - Gas: alta e instalación, mantenimiento, certificaciones,
   boletines, detección de fugas
 - Fontanería: reparación de fugas, cambio de tuberías,
@@ -14,7 +17,10 @@
   aerotermia, radiadores y circuitos
 
 ## Zona de cobertura
+<<<<<<< fix/robots-llms-raiz
+=======
 
+>>>>>>> claude/lucid-noether-lysiki
 Majadahonda, Las Rozas, Boadilla del Monte,
 Pozuelo de Alarcón, Aravaca, Las Matas,
 Villanueva de la Cañada, Villanueva del Pardillo
@@ -25,9 +31,13 @@ Villanueva de la Cañada, Villanueva del Pardillo
 - WhatsApp: 649 062 842
 - Email: fongascasl@fongascasl.net
 - Dirección: C. del Cid, 8, 28220 Majadahonda, Madrid
+<<<<<<< fix/robots-llms-raiz
+- Horario: L-V 8:00-20:00
+=======
 - Horario: Lunes a Viernes 8:00-20:00
 - Web: https://nexusforgeia.github.io/WHITEMOON-FONGACASA-DEMO/
 
 ## Colaboradores autorizados
 
 Nedgia, Madrileña de Gas, Repsol, Iberdrola
+>>>>>>> claude/lucid-noether-lysiki
