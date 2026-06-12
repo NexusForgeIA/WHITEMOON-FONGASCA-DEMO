@@ -291,10 +291,9 @@ h2.section-title{font-size:clamp(1.9rem,4.2vw,3.2rem);font-weight:700;letter-spa
   background:linear-gradient(160deg,var(--bg-elev-2),var(--bg-elev));
   aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;
 }
-.svc-visual .icon{width:clamp(96px,18vw,168px);height:auto;color:var(--silver);opacity:.92}
-.svc-visual .icon .fire{color:var(--fire)}
-.svc-visual::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 70% 20%,rgba(232,116,42,.14),transparent 55%)}
-.svc-visual .badge{position:absolute;left:18px;bottom:18px;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--silver);background:rgba(13,13,13,.7);border:1px solid var(--line-bright);padding:7px 12px;border-radius:8px;backdrop-filter:blur(4px)}
+.svc-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:contrast(1.04) brightness(.82) saturate(1.02)}
+.svc-visual::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(circle at 70% 20%,rgba(232,116,42,.14),transparent 55%)}
+.svc-visual .badge{position:absolute;z-index:2;left:18px;bottom:18px;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--silver);background:rgba(13,13,13,.7);border:1px solid var(--line-bright);padding:7px 12px;border-radius:8px;backdrop-filter:blur(4px)}
 
 /* ---------- Zonas ---------- */
 .zonas{background:var(--bg-elev);border-block:1px solid var(--line)}
@@ -509,10 +508,8 @@ h2.section-title{font-size:clamp(1.9rem,4.2vw,3.2rem);font-weight:700;letter-spa
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
       <div class="svc-visual">
-        <svg class="icon" viewBox="0 0 120 120" fill="none" aria-hidden="true">
-          <path class="fire" d="M60 18c4 14-8 20-8 32a18 18 0 0 0 18 18c10 0 18-8 18-19 0-15-14-22-14-36-7 6-8 14-6 22-6-2-9-9-8-19-6 5-9 12-8 21" fill="currentColor" opacity=".95"/>
-          <path d="M44 70c0 20 11 32 26 32s26-12 26-30" stroke="#C0C0C0" stroke-width="3" stroke-linecap="round" opacity=".5"/>
-        </svg>
+        <img src="https://fongascasl.net/wp-content/uploads/Instalacion-y-Mantenimiento-de-Gas-Fongasca-Majadahonda-Madrid.jpg"
+             alt="Instalación y mantenimiento de gas Majadahonda" width="600" height="450" loading="lazy">
         <span class="badge">Autorizado · Nedgia · Repsol</span>
       </div>
     </article>
@@ -520,12 +517,8 @@ h2.section-title{font-size:clamp(1.9rem,4.2vw,3.2rem);font-weight:700;letter-spa
     <!-- FONTANERIA -->
     <article class="svc reveal" id="fontaneria">
       <div class="svc-visual">
-        <svg class="icon" viewBox="0 0 120 120" fill="none" aria-hidden="true">
-          <path d="M30 30h22v18H38v24a8 8 0 0 0 8 8h16" stroke="#C0C0C0" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-          <rect x="22" y="22" width="38" height="16" rx="4" stroke="#C0C0C0" stroke-width="6"/>
-          <path class="fire" d="M62 80h26m-13-13v26" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
-          <circle class="fire" cx="75" cy="80" r="20" stroke="currentColor" stroke-width="4" opacity=".4"/>
-        </svg>
+        <img src="https://fongascasl.net/wp-content/uploads/reformas-de-banos-y-cambio-banera-por-plato-ducha-fongasca-Majadahonda.jpg"
+             alt="Fontanería y reformas de baño Majadahonda" width="600" height="450" loading="lazy">
         <span class="badge">Reformas · Averías · Reparación</span>
       </div>
       <div class="svc-body">
@@ -561,12 +554,8 @@ h2.section-title{font-size:clamp(1.9rem,4.2vw,3.2rem);font-weight:700;letter-spa
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
       <div class="svc-visual">
-        <svg class="icon" viewBox="0 0 120 120" fill="none" aria-hidden="true">
-          <rect x="34" y="24" width="52" height="58" rx="8" stroke="#C0C0C0" stroke-width="6"/>
-          <rect x="46" y="36" width="28" height="18" rx="3" stroke="#C0C0C0" stroke-width="4" opacity=".6"/>
-          <path class="fire" d="M60 60c3 5-3 7-3 11a6 6 0 0 0 12 0c0-5-6-7-5-13-3 2-4 4-4 7" fill="currentColor"/>
-          <path d="M44 82v14M60 82v14M76 82v14" stroke="#C0C0C0" stroke-width="6" stroke-linecap="round" opacity=".5"/>
-        </svg>
+        <img src="https://fongascasl.net/wp-content/uploads/confort-instalacion-calefaccion-Fongasca.jpg"
+             alt="Instalación calefacción y calderas Majadahonda" width="600" height="450" loading="lazy">
         <span class="badge">Gas · Condensación · Garantía</span>
       </div>
     </article>
