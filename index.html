@@ -341,41 +341,17 @@ h2.section-title{font-size:clamp(1.9rem,4.2vw,3.2rem);font-weight:700;letter-spa
 .faq-a p{margin:0;padding:0 40px 26px 4px;color:var(--ink-dim);max-width:64ch;text-wrap:pretty}
 /* native details animation-safe: content visible by default */
 
-/* ---------- Contacto ---------- */
-.contact{background:var(--bg-elev);border-top:1px solid var(--line)}
-.contact-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(40px,6vw,80px);margin-top:clamp(40px,5vw,56px);align-items:start}
-.contact-info .lead{color:var(--ink-dim);max-width:42ch;margin:18px 0 32px}
-.contact-lines{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:2px}
-.contact-lines li a, .contact-lines li div{
-  display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);
-}
-.contact-lines .ci{flex:none;width:42px;height:42px;border-radius:11px;border:1px solid var(--line-bright);display:flex;align-items:center;justify-content:center;color:var(--fire);background:var(--bg)}
-.contact-lines .ci svg{width:20px;height:20px}
-.contact-lines .ct b{display:block;font-size:16px;font-weight:600;color:var(--ink)}
-.contact-lines .ct span{display:block;font-size:13.5px;color:var(--ink-faint)}
-.contact-lines li a:hover .ct b{color:var(--fire-soft)}
-
-form.form{background:var(--bg);border:1px solid var(--line);border-radius:18px;padding:clamp(24px,3vw,36px)}
-.form h3{margin:0 0 6px;font-size:1.45rem;font-weight:700;letter-spacing:-.01em}
-.form .fsub{color:var(--ink-faint);font-size:14.5px;margin:0 0 26px}
-.field{margin-bottom:18px}
-.field label{display:block;font-size:13.5px;font-weight:600;color:var(--ink-dim);margin-bottom:8px}
-.field label .req{color:var(--fire)}
-.field input,.field select,.field textarea{
-  width:100%;background:var(--bg-elev-2);border:1px solid var(--line-bright);
-  color:var(--ink);border-radius:11px;padding:13px 15px;font-size:15.5px;font-family:inherit;
-  min-height:48px;transition:border-color .18s ease, background .18s ease;
-}
-.field textarea{min-height:120px;resize:vertical}
-.field input::placeholder,.field textarea::placeholder{color:#6f6f6f}
-.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--fire);background:var(--bg)}
-.field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23C0C0C0' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 15px center;padding-right:42px}
-.field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.form .btn{width:100%;justify-content:center;padding:15px;font-size:16px;margin-top:6px}
-.form-note{font-size:12.5px;color:var(--ink-faint);margin:14px 0 0;text-align:center}
-.form-success{display:none;align-items:center;gap:12px;background:rgba(232,116,42,.1);border:1px solid var(--fire);color:var(--ink);padding:14px 16px;border-radius:11px;font-size:14.5px;margin-bottom:20px}
-.form-success svg{width:20px;height:20px;color:var(--fire);flex:none}
-.form-success.show{display:flex}
+/* ---------- CTA chat ---------- */
+.cta-chat{background:var(--bg-elev);border-top:1px solid var(--line);text-align:center;
+  padding-block:clamp(64px,10vh,120px)}
+.cta-chat .wrap{max-width:760px}
+.cta-chat h2{font-size:clamp(1.9rem,4.2vw,3rem);font-weight:700;letter-spacing:-.025em;line-height:1.05;margin:0;text-wrap:balance}
+.cta-chat p{color:var(--ink-dim);font-size:1.06rem;max-width:46ch;margin:18px auto 32px;text-wrap:pretty}
+.cta-chat button{display:inline-flex;align-items:center;gap:9px;font-family:inherit;font-weight:600;font-size:16px;
+  border:0;border-radius:999px;padding:16px 30px;min-height:48px;cursor:pointer;background:var(--fire);color:#160a02;
+  transition:transform .15s ease, background .2s ease}
+.cta-chat button:hover{background:var(--fire-soft)}
+.cta-chat button:active{transform:scale(.97)}
 
 /* ---------- Footer ---------- */
 .site-footer{border-top:1px solid var(--line);background:var(--bg);padding-block:clamp(56px,8vw,80px) 30px}
@@ -416,7 +392,7 @@ form.form{background:var(--bg);border:1px solid var(--line);border-radius:18px;p
   .hero-stat{padding:16px}
   .svc{grid-template-columns:1fr;gap:24px}
   .svc:nth-child(even) .svc-visual{order:0}
-  .zonas-grid,.faq-wrap,.contact-grid{grid-template-columns:1fr}
+  .zonas-grid,.faq-wrap{grid-template-columns:1fr}
   .faq-aside{position:static}
   .footer-grid{grid-template-columns:1fr 1fr}
   .footer-brand{grid-column:1/-1}
@@ -712,98 +688,12 @@ form.form{background:var(--bg);border:1px solid var(--line);border-radius:18px;p
   </div>
 </section>
 
-<!-- ============ CONTACTO ============ -->
-<section class="contact section" id="contacto">
+<!-- ============ CTA CHAT ============ -->
+<section class="cta-chat" id="contacto">
   <div class="wrap">
-    <div class="section-head reveal">
-      <span class="kicker">Hablemos</span>
-      <h2 class="section-title">Cuéntanos qué necesitas. Te respondemos hoy.</h2>
-    </div>
-    <div class="contact-grid">
-      <div class="contact-info reveal">
-        <p class="lead">Llámanos para una urgencia o déjanos los datos y te preparamos un presupuesto sin compromiso.</p>
-        <ul class="contact-lines">
-          <li>
-            <a href="tel:+34916395206">
-              <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
-              <span class="ct"><b>916 395 206 · 659 477 757</b><span>Teléfono y urgencias</span></span>
-            </a>
-          </li>
-          <li>
-            <a href="https://wa.me/34649062842" target="_blank" rel="noopener">
-              <span class="ci"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.06c-.24.68-1.4 1.3-1.93 1.38-.49.07-1.13.1-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.79-4.17-4.94-4.37-.14-.19-1.18-1.57-1.18-2.99s.75-2.12 1.01-2.41c.27-.29.58-.36.78-.36.19 0 .39 0 .56.01.18.01.42-.07.66.5.24.59.83 2.03.9 2.18.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.16-.29.36-.42.49-.14.14-.28.29-.12.57.16.29.71 1.17 1.53 1.9 1.05.94 1.94 1.23 2.22 1.37.27.14.43.12.59-.07.16-.19.68-.79.86-1.07.18-.27.36-.22.61-.13.24.09 1.55.73 1.82.86.27.14.45.2.51.31.07.11.07.63-.17 1.31z"/></svg></span>
-              <span class="ct"><b>649 062 842</b><span>WhatsApp</span></span>
-            </a>
-          </li>
-          <li>
-            <a href="mailto:fongascasl@fongascasl.net">
-              <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>
-              <span class="ct"><b>fongascasl@fongascasl.net</b><span>Email</span></span>
-            </a>
-          </li>
-          <li>
-            <a href="https://maps.google.com/?q=C.+del+Cid+8,+28220+Majadahonda,+Madrid" target="_blank" rel="noopener">
-              <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-              <span class="ct"><b>C. del Cid, 8 · 28220 Majadahonda</b><span>Madrid · L-V 8:00–20:00</span></span>
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <form class="form reveal" id="contactForm" novalidate>
-        <h3>Pide tu presupuesto</h3>
-        <p class="fsub">Respuesta el mismo día laborable. Sin compromiso.</p>
-        <div class="form-success" id="formSuccess" role="status" aria-live="polite">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-          <span>¡Gracias! Hemos recibido tu solicitud. Te llamaremos en breve.</span>
-        </div>
-        <div class="field-row">
-          <div class="field">
-            <label for="f-nombre">Nombre <span class="req" aria-hidden="true">*</span></label>
-            <input id="f-nombre" name="nombre" type="text" autocomplete="name" placeholder="Tu nombre" required>
-          </div>
-          <div class="field">
-            <label for="f-tel">Teléfono <span class="req" aria-hidden="true">*</span></label>
-            <input id="f-tel" name="telefono" type="tel" autocomplete="tel" inputmode="tel" placeholder="6XX XXX XXX" required>
-          </div>
-        </div>
-        <div class="field-row">
-          <div class="field">
-            <label for="f-zona">Zona</label>
-            <select id="f-zona" name="zona">
-              <option value="">Selecciona tu municipio</option>
-              <option>Majadahonda</option>
-              <option>Las Rozas</option>
-              <option>Boadilla del Monte</option>
-              <option>Pozuelo de Alarcón</option>
-              <option>Aravaca</option>
-              <option>Las Matas</option>
-              <option>Villanueva de la Cañada</option>
-              <option>Villanueva del Pardillo</option>
-              <option>Otra zona de Madrid</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="f-motivo">Motivo</label>
-            <select id="f-motivo" name="motivo">
-              <option value="">¿Qué necesitas?</option>
-              <option>Urgencia de gas / fuga</option>
-              <option>Revisión o certificado de gas</option>
-              <option>Fontanería / fuga de agua</option>
-              <option>Reforma de baño o cocina</option>
-              <option>Caldera / calefacción</option>
-              <option>Otro</option>
-            </select>
-          </div>
-        </div>
-        <div class="field">
-          <label for="f-msg">Mensaje</label>
-          <textarea id="f-msg" name="mensaje" placeholder="Cuéntanos brevemente qué necesitas y cuándo te viene bien."></textarea>
-        </div>
-        <button class="btn btn-fire" type="submit">Enviar solicitud</button>
-        <p class="form-note">Demo sin envío real. En producción los datos llegan al equipo de FONGASCA.</p>
-      </form>
-    </div>
+    <h2>¿Hablamos?</h2>
+    <p>Cuéntanos qué necesitas por el chat y te respondemos el mismo día laborable.</p>
+    <button onclick="document.getElementById('fon-toggle')?.click()">Abrir chat →</button>
   </div>
 </section>
 
@@ -894,24 +784,6 @@ form.form{background:var(--bg);border:1px solid var(--line);border-radius:18px;p
     reveals.forEach(function(el){io.observe(el);});
   } else {
     reveals.forEach(function(el){el.classList.add('in');});
-  }
-
-  // Demo form
-  var form=document.getElementById('contactForm'), ok=document.getElementById('formSuccess');
-  if(form){
-    form.addEventListener('submit',function(e){
-      e.preventDefault();
-      var nombre=form.nombre, tel=form.telefono, valid=true;
-      [nombre,tel].forEach(function(f){
-        if(!f.value.trim()){f.style.borderColor='#E8742A';valid=false;}
-        else{f.style.borderColor='';}
-      });
-      if(!valid){nombre.value.trim()?tel.focus():nombre.focus();return;}
-      if(ok){ok.classList.add('show');}
-      form.querySelector('button[type=submit]').textContent='Solicitud enviada';
-      form.reset();
-      if(ok){ok.scrollIntoView({behavior:'smooth',block:'center'});}
-    });
   }
 })();
 </script>
