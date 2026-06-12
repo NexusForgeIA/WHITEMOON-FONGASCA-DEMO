@@ -19,8 +19,6 @@
   var LEADS_TABLE = "leads_web";
 
   var ACCENT = "#E8742A";
-  var URGENCIA_TEL = "916 395 206";
-  var URGENCIA_TEL_REFORMA = "643 199 580";
 
   /* CallMeBot — aviso por WhatsApp al recibir el lead.
      Rellena CALLMEBOT_APIKEY con la apikey que CallMeBot asigna al número receptor.
@@ -116,9 +114,6 @@
     ".fon-send svg{width:20px;height:20px}" +
     ".fon-err{color:#f0945a;font-size:12.5px;padding:6px 4px 0}" +
     ".fon-foot-note{text-align:center;font-size:11px;color:#6f6f6f;padding-top:9px}" +
-    ".fon-cta{display:inline-flex;align-items:center;gap:8px;background:" + ACCENT + ";color:#160a02;font-weight:600;font-size:14px;" +
-      "text-decoration:none;padding:11px 16px;border-radius:11px;align-self:flex-start;margin-left:35px}" +
-    ".fon-cta svg{width:17px;height:17px}" +
 
     ".fon-typing{display:flex;gap:4px;padding:13px 14px}" +
     ".fon-typing i{width:7px;height:7px;border-radius:50%;background:#6f6f6f;animation:fon-bounce 1.2s infinite ease-in-out}" +
@@ -134,7 +129,6 @@
   var WRENCH = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4 2.6-2.6z"/></svg>';
   var CLOSE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>';
   var SEND = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>';
-  var PHONE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>';
 
   /* ---------- Construcción del DOM ---------- */
   function build() {
@@ -346,20 +340,7 @@
     step = "done";
     saveLead();
     notifyWhatsApp();
-    var urg = state.reforma ? URGENCIA_TEL_REFORMA : URGENCIA_TEL;
-    var msg = state.reforma
-      ? "Perfecto " + state.nombre + ", tenemos tu solicitud:\n" +
-        state.servicio + " · " + state.m2 + " · Presupuesto: " + state.presupuesto + ".\n" +
-        "Te llamamos lo más rápido posible.\nUrgencias: " + URGENCIA_TEL_REFORMA
-      : "Perfecto " + state.nombre + ", te llamamos en breve. Urgencias: " + URGENCIA_TEL;
-    botMsg(msg, function () {
-      var a = document.createElement("a");
-      a.className = "fon-cta";
-      a.href = "tel:+34" + urg.replace(/\s+/g, "");
-      a.innerHTML = PHONE + "Llamar a urgencias ahora";
-      els.body.appendChild(a);
-      scroll();
-    });
+    botMsg("✅ Hemos recibido tu solicitud, " + state.nombre + ".\nNos ponemos en contacto contigo en menos de 1 hora.");
   }
 
   /* ---------- Supabase ---------- */
