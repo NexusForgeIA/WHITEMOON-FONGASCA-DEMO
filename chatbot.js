@@ -20,17 +20,35 @@
 
   var ACCENT = "#E8742A";
   var URGENCIA_TEL = "916 395 206";
+  var URGENCIA_TEL_REFORMA = "643 199 580";
+
+  /* CallMeBot — aviso por WhatsApp al recibir el lead.
+     Rellena CALLMEBOT_APIKEY con la apikey que CallMeBot asigna al número receptor.
+     Sin apikey el aviso se omite (el lead se guarda igualmente en Supabase). */
+  var CALLMEBOT_PHONE = "34643199580";
+  var CALLMEBOT_APIKEY = "";
 
   /* ---------- Flujo de servicios ---------- */
-  var SERVICES = {
-    Gas: ["Avería / fuga", "Instalación nueva", "Certificación / boletín"],
-    "Fontanería": ["Avería urgente", "Instalación", "Reforma baño / cocina"],
-    "Calefacción": ["Avería caldera", "Instalación nueva", "Mantenimiento anual"]
-  };
+  var SERVICIOS = [
+    "Alta o Instalación Gas",
+    "Mantenimiento de Gas",
+    "Certificaciones y Boletines",
+    "Instalación de Caldera",
+    "Fuga o avería",
+    "Fontanería",
+    "Instalación Calefacción",
+    "Mantenimiento Calefacción",
+    "Reforma de baño",
+    "Reforma de cocina",
+    "Otros"
+  ];
+  var REFORMAS = ["Reforma de baño", "Reforma de cocina"];
+  var METROS = ["Menos de 5 m²", "5 - 10 m²", "10 - 20 m²", "Más de 20 m²"];
+  var PRESUPUESTOS = ["Menos de 3.000€", "3.000€ - 6.000€", "6.000€ - 12.000€", "Más de 12.000€"];
   var ZONAS = ["Majadahonda", "Las Rozas", "Boadilla", "Pozuelo", "Aravaca", "Otro Madrid"];
 
   /* ---------- Estado ---------- */
-  var state = { flow: "", servicio: "", tipo: "", zona: "", nombre: "", telefono: "" };
+  var state = { servicio: "", reforma: false, m2: "", presupuesto: "", zona: "", nombre: "", telefono: "" };
   var els = {};
 
   /* ---------- Estilos ---------- */
@@ -75,7 +93,7 @@
     ".fon-mini{width:26px;height:26px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;" +
       "background:" + ACCENT + ";color:#160a02}" +
     ".fon-mini svg{width:15px;height:15px}" +
-    ".fon-bub{padding:11px 14px;border-radius:14px;font-size:14.5px;line-height:1.5;border:1px solid transparent;text-wrap:pretty}" +
+    ".fon-bub{padding:11px 14px;border-radius:14px;font-size:14.5px;line-height:1.5;border:1px solid transparent;text-wrap:pretty;white-space:pre-line}" +
     ".fon-row.bot .fon-bub{background:#161616;border-color:#2a2a2a;border-bottom-left-radius:5px}" +
     ".fon-row.user .fon-bub{background:" + ACCENT + ";color:#160a02;font-weight:600;border-bottom-right-radius:5px}" +
 
@@ -252,28 +270,35 @@
   var step = "";
 
   function startFlow() {
-    botMsg("Hola, soy Fon 👋 ¿En qué puedo ayudarte?", function () {
-      step = "flow";
-      options(["Gas", "Fontanería", "Calefacción", "Urgencia"], pickFlow, "Urgencia");
-    });
-  }
-
-  function pickFlow(flow) {
-    state.flow = flow;
-    if (flow === "Urgencia") {
-      state.tipo = "Urgencia";
-      botMsg("Entendido, es una urgencia. Vamos rápido.", askZona);
-      return;
-    }
-    botMsg("¿Qué necesitas?", function () {
+    botMsg("Hola, soy Fon 👋 ¿Qué necesitas?", function () {
       step = "servicio";
-      options(SERVICES[flow], pickServicio);
+      options(SERVICIOS, pickServicio, "Fuga o avería");
     });
   }
 
   function pickServicio(servicio) {
     state.servicio = servicio;
-    state.tipo = state.flow + " · " + servicio;
+    if (REFORMAS.indexOf(servicio) !== -1) {
+      state.reforma = true;
+      botMsg("¿Cuántos m² tiene aproximadamente?", function () {
+        step = "m2";
+        options(METROS, pickMetros);
+      });
+      return;
+    }
+    askZona();
+  }
+
+  function pickMetros(m2) {
+    state.m2 = m2;
+    botMsg("¿Tienes presupuesto estimado para la reforma?", function () {
+      step = "presupuesto";
+      options(PRESUPUESTOS, pickPresupuesto);
+    });
+  }
+
+  function pickPresupuesto(p) {
+    state.presupuesto = p;
     askZona();
   }
 
@@ -320,27 +345,34 @@
   function finish() {
     step = "done";
     saveLead();
-    botMsg(
-      "Perfecto " + state.nombre + ", te llamamos en breve. Urgencias: " + URGENCIA_TEL,
-      function () {
-        var a = document.createElement("a");
-        a.className = "fon-cta";
-        a.href = "tel:+34916395206";
-        a.innerHTML = PHONE + "Llamar a urgencias ahora";
-        els.body.appendChild(a);
-        scroll();
-      }
-    );
+    notifyWhatsApp();
+    var urg = state.reforma ? URGENCIA_TEL_REFORMA : URGENCIA_TEL;
+    var msg = state.reforma
+      ? "Perfecto " + state.nombre + ", tenemos tu solicitud:\n" +
+        state.servicio + " · " + state.m2 + " · Presupuesto: " + state.presupuesto + ".\n" +
+        "Te llamamos lo más rápido posible.\nUrgencias: " + URGENCIA_TEL_REFORMA
+      : "Perfecto " + state.nombre + ", te llamamos en breve. Urgencias: " + URGENCIA_TEL;
+    botMsg(msg, function () {
+      var a = document.createElement("a");
+      a.className = "fon-cta";
+      a.href = "tel:+34" + urg.replace(/\s+/g, "");
+      a.innerHTML = PHONE + "Llamar a urgencias ahora";
+      els.body.appendChild(a);
+      scroll();
+    });
   }
 
   /* ---------- Supabase ---------- */
   function saveLead() {
+    var mensaje = state.reforma
+      ? state.servicio + " · " + state.m2 + " · Presupuesto: " + state.presupuesto + " · Zona: " + state.zona
+      : state.servicio + " · Zona: " + state.zona;
     var payload = {
       nombre: state.nombre,
       telefono: state.telefono,
       sector: "servicio-tecnico",
-      interes: state.tipo,
-      mensaje: "Servicio: " + state.tipo + " · Zona: " + state.zona,
+      interes: state.servicio,
+      mensaje: mensaje,
       origen: "fongasca-demo"
     };
     try {
@@ -360,6 +392,29 @@
       });
     } catch (err) {
       console.warn("[Fon] Excepción al guardar el lead:", err);
+    }
+  }
+
+  /* ---------- CallMeBot (aviso por WhatsApp) ---------- */
+  function notifyWhatsApp() {
+    if (!CALLMEBOT_APIKEY) {
+      console.warn("[Fon] CallMeBot sin apikey: se omite el aviso por WhatsApp.");
+      return;
+    }
+    var lines = ["Nuevo lead FONGASCA (demo)", "Servicio: " + state.servicio];
+    if (state.reforma) {
+      lines.push("m2: " + state.m2);
+      lines.push("Presupuesto: " + state.presupuesto);
+    }
+    lines.push("Zona: " + state.zona, "Nombre: " + state.nombre, "Telefono: " + state.telefono);
+    var url = "https://api.callmebot.com/whatsapp.php?phone=" + CALLMEBOT_PHONE +
+      "&text=" + encodeURIComponent(lines.join("\n")) + "&apikey=" + CALLMEBOT_APIKEY;
+    try {
+      fetch(url, { method: "GET", mode: "no-cors" }).catch(function (err) {
+        console.warn("[Fon] CallMeBot error de red:", err);
+      });
+    } catch (err) {
+      console.warn("[Fon] CallMeBot excepción:", err);
     }
   }
 
