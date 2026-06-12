@@ -126,6 +126,7 @@
 
     var fab = document.createElement("button");
     fab.className = "fon-fab";
+    fab.id = "fon-toggle";
     fab.setAttribute("aria-label", "Abrir chat con Fon, asistente de FONGASCA");
     fab.setAttribute("aria-expanded", "false");
     fab.innerHTML = WRENCH + '<span class="fon-dot" aria-hidden="true"></span>';
