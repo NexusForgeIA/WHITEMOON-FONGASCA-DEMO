@@ -8,6 +8,7 @@
 <meta name="author" content="FONGASCA S.L.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="theme-color" content="#0d0d0d">
+<link rel="canonical" href="https://nexusforgeia.github.io/WHITEMOON-FONGACASA-DEMO/">
 
 <!-- GEO signals -->
 <meta name="geo.region" content="ES-MD">
@@ -35,6 +36,39 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://fongascasl.net">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- JSON-LD: LocalBusiness (sede + área de servicio) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "FONGASCA S.L.",
+  "url": "https://nexusforgeia.github.io/WHITEMOON-FONGACASA-DEMO/",
+  "logo": "https://fongascasl.net/wp-content/uploads/logo-fongasca-1.png",
+  "telephone": "916395206",
+  "email": "fongascasl@fongascasl.net",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "C. del Cid, 8",
+    "addressLocality": "Majadahonda",
+    "addressRegion": "Madrid",
+    "postalCode": "28220",
+    "addressCountry": "ES"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.4703,
+    "longitude": -3.8851
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+    "opens": "09:00",
+    "closes": "18:00"
+  },
+  "areaServed": "Majadahonda, Las Rozas, Boadilla del Monte, Pozuelo de Alarcón"
+}
+</script>
 
 <!-- JSON-LD: LocalBusiness + AggregateRating -->
 <script type="application/ld+json">
@@ -366,7 +400,7 @@ h2.section-title{font-size:clamp(1.9rem,4.2vw,3.2rem);font-weight:700;letter-spa
 .socials a{width:44px;height:44px;border:1px solid var(--line-bright);border-radius:11px;display:flex;align-items:center;justify-content:center;color:var(--silver);transition:color .2s ease,border-color .2s ease}
 .socials a:hover{color:var(--fire);border-color:var(--fire)}
 .socials svg{width:20px;height:20px}
-.footer-col h4{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin:0 0 18px;font-weight:600}
+.footer-col h3{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin:0 0 18px;font-weight:600}
 .footer-col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
 .footer-col a,.footer-col li{color:var(--ink-dim);font-size:14.5px}
 .footer-col a:hover{color:var(--ink)}
@@ -712,7 +746,7 @@ h2.section-title{font-size:clamp(1.9rem,4.2vw,3.2rem);font-weight:700;letter-spa
         </div>
       </div>
       <div class="footer-col">
-        <h4>Servicios</h4>
+        <h3>Servicios</h3>
         <ul>
           <li><a href="gas/">Gas e instalaciones</a></li>
           <li><a href="fontaneria/">Fontanería</a></li>
@@ -721,7 +755,7 @@ h2.section-title{font-size:clamp(1.9rem,4.2vw,3.2rem);font-weight:700;letter-spa
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Contacto</h4>
+        <h3>Contacto</h3>
         <ul>
           <li><a href="tel:+34916395206">916 395 206</a></li>
           <li><a href="tel:+34659477757">659 477 757</a></li>
