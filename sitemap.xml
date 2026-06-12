@@ -30,4 +30,46 @@
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
+  <url>
+    <loc>https://nexusforgeia.github.io/WHITEMOON-FONGACASA-DEMO/blog/</loc>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nexusforgeia.github.io/WHITEMOON-FONGACASA-DEMO/blog/revision-instalacion-gas/</loc>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://nexusforgeia.github.io/WHITEMOON-FONGACASA-DEMO/blog/fuga-agua-oculta/</loc>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://nexusforgeia.github.io/WHITEMOON-FONGACASA-DEMO/blog/cuando-cambiar-caldera/</loc>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://nexusforgeia.github.io/WHITEMOON-FONGACASA-DEMO/blog/aerotermia-ventajas/</loc>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://nexusforgeia.github.io/WHITEMOON-FONGACASA-DEMO/blog/cambiar-banera-plato-ducha/</loc>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://nexusforgeia.github.io/WHITEMOON-FONGACASA-DEMO/blog/gas-natural-vs-propano-butano/</loc>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>
