@@ -254,27 +254,36 @@ button{font-family:inherit;cursor:pointer}
 .nav-toggle{display:none;background:none;border:1px solid var(--line-bright);border-radius:10px;width:46px;height:46px;color:var(--ink)}
 .nav-toggle svg{width:22px;height:22px}
 
-/* ---------- Hero ---------- */
-.hero{position:relative;min-height:clamp(620px,92vh,920px);display:flex;align-items:flex-end;overflow:hidden}
+/* ---------- Hero · DarkProjectHero (Magic MCP) ---------- */
+.hero{position:relative;min-height:clamp(640px,94vh,960px);display:flex;align-items:flex-end;overflow:hidden;isolation:isolate}
 .hero-media{position:absolute;inset:0;z-index:0}
-.hero-media img{width:100%;height:100%;object-fit:cover;object-position:center 30%;filter:contrast(1.05) brightness(.62) saturate(1.05)}
+.hero-media img{width:100%;height:100%;object-fit:cover;object-position:center 30%;filter:contrast(1.06) brightness(.58) saturate(1.06);transform:scale(1.06);animation:heroPan 26s ease-in-out infinite alternate}
 .hero-media::after{
   content:"";position:absolute;inset:0;
   background:
-    linear-gradient(105deg, rgba(13,13,13,.95) 0%, rgba(13,13,13,.72) 38%, rgba(13,13,13,.18) 70%, rgba(13,13,13,.55) 100%),
-    linear-gradient(0deg, rgba(13,13,13,.96) 2%, rgba(13,13,13,0) 42%);
+    linear-gradient(105deg, rgba(13,13,13,.96) 0%, rgba(13,13,13,.74) 38%, rgba(13,13,13,.16) 70%, rgba(13,13,13,.58) 100%),
+    linear-gradient(0deg, rgba(13,13,13,.97) 2%, rgba(13,13,13,0) 46%);
 }
-.hero-glow{position:absolute;z-index:1;right:-10%;top:8%;width:48vw;height:48vw;max-width:680px;max-height:680px;
-  background:radial-gradient(circle, rgba(232,116,42,.30), rgba(232,116,42,0) 62%);filter:blur(14px);pointer-events:none}
-.hero-inner{position:relative;z-index:2;width:100%;padding-block:clamp(56px,9vh,120px)}
+/* hairline industrial grid texture */
+.hero-grid-tex{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.5;
+  background-image:linear-gradient(rgba(192,192,192,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(192,192,192,.05) 1px,transparent 1px);
+  background-size:64px 64px;
+  -webkit-mask-image:radial-gradient(ellipse 80% 70% at 70% 30%, #000 0%, transparent 75%);
+          mask-image:radial-gradient(ellipse 80% 70% at 70% 30%, #000 0%, transparent 75%);}
+.hero-glow{position:absolute;z-index:1;right:-10%;top:4%;width:52vw;height:52vw;max-width:760px;max-height:760px;
+  background:radial-gradient(circle, rgba(232,116,42,.34), rgba(232,116,42,0) 62%);filter:blur(16px);pointer-events:none;
+  animation:heroGlow 7s ease-in-out infinite}
+.hero-inner{position:relative;z-index:2;width:100%;padding-block:clamp(64px,10vh,128px)}
 .hero-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:48px;align-items:end}
 .credential{
   display:inline-flex;align-items:center;gap:12px;
   font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
   color:var(--silver);margin-bottom:26px;
+  padding:8px 16px 8px 12px;border:1px solid var(--line-bright);border-radius:999px;
+  background:rgba(22,22,22,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
 }
-.credential .dot{width:7px;height:7px;border-radius:50%;background:var(--fire);box-shadow:0 0 0 4px rgba(232,116,42,.18)}
-.credential .bar{width:34px;height:1px;background:var(--line-bright)}
+.credential .dot{width:8px;height:8px;border-radius:50%;background:var(--fire);box-shadow:0 0 0 0 rgba(232,116,42,.5);animation:heroPulse 2.4s ease-out infinite}
+.credential .bar{width:30px;height:1px;background:var(--line-bright)}
 h1.hero-title{
   font-size:clamp(2.6rem,6.4vw,5.4rem);
   line-height:.99;font-weight:800;letter-spacing:-.03em;
@@ -284,12 +293,41 @@ h1.hero-title em{font-style:normal;color:var(--fire);display:inline-block}
 .hero-sub{font-size:clamp(1.02rem,1.5vw,1.22rem);color:var(--ink-dim);max-width:46ch;margin:0 0 34px;text-wrap:pretty}
 .hero-actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
 .hero-actions .btn{padding:15px 26px;font-size:16px}
+.hero-actions .btn-fire{box-shadow:0 10px 32px -8px rgba(232,116,42,.55)}
 .hero-side{padding-bottom:6px}
-.hero-stats{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden}
-.hero-stat{background:var(--bg);padding:20px 22px}
+.hero-stats{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden;
+  box-shadow:0 24px 60px -28px rgba(0,0,0,.75)}
+.hero-stat{background:rgba(13,13,13,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:20px 22px;transition:background .25s ease}
+.hero-stat:hover{background:var(--bg-elev)}
 .hero-stat b{display:block;font-size:clamp(1.7rem,3vw,2.4rem);font-weight:800;color:var(--ink);letter-spacing:-.02em;line-height:1}
 .hero-stat span{display:block;margin-top:8px;font-size:13.5px;color:var(--ink-faint);font-weight:500}
 .hero-stat.accent b{color:var(--fire)}
+/* trust strip */
+.hero-trust{display:flex;flex-wrap:wrap;align-items:center;gap:10px 22px;margin-top:34px;padding-top:24px;border-top:1px solid var(--line)}
+.hero-trust .lbl{font-size:11.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint)}
+.hero-trust .names{display:flex;flex-wrap:wrap;gap:8px}
+.hero-trust .names span{font-size:13px;font-weight:600;color:var(--silver);padding:5px 12px;border:1px solid var(--line);border-radius:999px;background:var(--bg-elev)}
+/* scroll cue */
+.hero-cue{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;
+  font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint)}
+.hero-cue svg{width:18px;height:18px;color:var(--fire);animation:heroBounce 1.8s ease-in-out infinite}
+/* entrance reveal */
+.hero-up{opacity:0;transform:translateY(22px);animation:heroUp .8s cubic-bezier(.16,1,.3,1) forwards}
+.hero-up.d1{animation-delay:.05s}
+.hero-up.d2{animation-delay:.15s}
+.hero-up.d3{animation-delay:.25s}
+.hero-up.d4{animation-delay:.35s}
+.hero-up.d5{animation-delay:.45s}
+@keyframes heroUp{to{opacity:1;transform:none}}
+@keyframes heroPan{from{transform:scale(1.06) translate3d(0,0,0)}to{transform:scale(1.12) translate3d(-1.5%,-2%,0)}}
+@keyframes heroGlow{0%,100%{opacity:.85;transform:scale(1)}50%{opacity:1;transform:scale(1.08)}}
+@keyframes heroPulse{0%{box-shadow:0 0 0 0 rgba(232,116,42,.5)}70%{box-shadow:0 0 0 9px rgba(232,116,42,0)}100%{box-shadow:0 0 0 0 rgba(232,116,42,0)}}
+@keyframes heroBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+@media (prefers-reduced-motion: reduce){
+  .hero-media img,.hero-glow,.credential .dot,.hero-cue svg{animation:none}
+  .hero-media img{transform:scale(1.06)}
+  .hero-up{opacity:1;transform:none;animation:none}
+}
 
 /* ---------- Section shared ---------- */
 .section{padding-block:clamp(72px,11vh,140px);position:relative}
@@ -438,6 +476,8 @@ h2.section-title{font-size:clamp(1.9rem,4.2vw,3.2rem);font-weight:700;letter-spa
   .site-header{}
   .brand img{height:44px}
   .hero{min-height:auto;padding-top:20px}
+  .hero-cue{display:none}
+  .hero-trust{gap:8px 14px;margin-top:28px}
   .hero-stats{grid-template-columns:1fr;gap:1px}
   .hero-stat{display:flex;align-items:baseline;gap:14px}
   .hero-stat b{font-size:1.9rem}
@@ -485,28 +525,38 @@ h2.section-title{font-size:clamp(1.9rem,4.2vw,3.2rem);font-weight:700;letter-spa
 
 <main id="inicio">
 
-<!-- ============ HERO ============ -->
+<!-- ============ HERO · DarkProjectHero (Magic MCP) ============ -->
 <section class="hero">
   <div class="hero-media">
     <img src="https://fongascasl.net/wp-content/uploads/tuberias-cobre-Fongasca-Majadahonda-Madrid.jpg"
          alt="Instalación de tubería de cobre realizada por FONGASCA en Majadahonda" width="1920" height="1080" fetchpriority="high">
   </div>
+  <div class="hero-grid-tex" aria-hidden="true"></div>
   <div class="hero-glow" aria-hidden="true"></div>
   <div class="wrap hero-inner">
     <div class="hero-grid">
       <div class="hero-copy">
-        <p class="credential"><span class="dot"></span> 30 años · Empresa autorizada <span class="bar"></span> Desde 1994</p>
-        <h1 class="hero-title">Gas, fontanería y<br>calefacción <em>sin sustos</em><br>en Majadahonda.</h1>
-        <p class="hero-sub">Instaladores autorizados desde 1994. Resolvemos fugas, instalamos calderas y certificamos tu instalación de gas con técnicos propios y garantía oficial.</p>
-        <div class="hero-actions">
+        <p class="credential hero-up d1"><span class="dot"></span> 30 años · Empresa autorizada <span class="bar"></span> Desde 1994</p>
+        <h1 class="hero-title hero-up d2">Gas, fontanería y<br>calefacción <em>sin sustos</em><br>en Majadahonda.</h1>
+        <p class="hero-sub hero-up d3">Instaladores autorizados desde 1994. Resolvemos fugas, instalamos calderas y certificamos tu instalación de gas con técnicos propios y garantía oficial.</p>
+        <div class="hero-actions hero-up d4">
           <a class="btn btn-fire" href="tel:+34916395206">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
             916 395 206
           </a>
           <a class="btn btn-ghost" href="#servicios">Ver servicios</a>
         </div>
+        <div class="hero-trust hero-up d5">
+          <span class="lbl">Autorizados por</span>
+          <div class="names">
+            <span>Nedgia</span>
+            <span>Madrileña de Gas</span>
+            <span>Repsol</span>
+            <span>Iberdrola</span>
+          </div>
+        </div>
       </div>
-      <aside class="hero-side">
+      <aside class="hero-side hero-up d4">
         <div class="hero-stats">
           <div class="hero-stat accent"><b>1994</b><span>Empresa instaladora autorizada</span></div>
           <div class="hero-stat"><b>&lt;60 min</b><span>Respuesta en urgencias de gas</span></div>
@@ -515,6 +565,10 @@ h2.section-title{font-size:clamp(1.9rem,4.2vw,3.2rem);font-weight:700;letter-spa
       </aside>
     </div>
   </div>
+  <a class="hero-cue" href="#servicios" aria-label="Ver servicios">
+    Servicios
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+  </a>
 </section>
 
 <!-- ============ SERVICIOS ============ -->
