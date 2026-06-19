@@ -257,9 +257,12 @@ button{font-family:inherit;cursor:pointer}
 /* ---------- Hero · DarkProjectHero (Magic MCP) ---------- */
 .hero{position:relative;min-height:clamp(640px,94vh,960px);display:flex;align-items:flex-end;overflow:hidden;isolation:isolate}
 .hero-media{position:absolute;inset:0;z-index:0}
-.hero-media img{width:100%;height:100%;object-fit:cover;object-position:center 30%;filter:contrast(1.06) brightness(.58) saturate(1.06);transform:scale(1.06);animation:heroPan 26s ease-in-out infinite alternate}
+.hero-media img,.hero-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;filter:contrast(1.06) brightness(.56) saturate(1.06)}
+.hero-media img{transform:scale(1.06);animation:heroPan 26s ease-in-out infinite alternate}
+.hero-video{z-index:1}
+.hero-fallback{z-index:0}
 .hero-media::after{
-  content:"";position:absolute;inset:0;
+  content:"";position:absolute;inset:0;z-index:2;
   background:
     linear-gradient(105deg, rgba(13,13,13,.96) 0%, rgba(13,13,13,.74) 38%, rgba(13,13,13,.16) 70%, rgba(13,13,13,.58) 100%),
     linear-gradient(0deg, rgba(13,13,13,.97) 2%, rgba(13,13,13,0) 46%);
@@ -290,6 +293,12 @@ h1.hero-title{
   margin:0 0 24px;text-wrap:balance;
 }
 h1.hero-title em{font-style:normal;color:var(--fire);display:inline-block}
+/* rotating word */
+.rot{display:inline-block;position:relative;vertical-align:bottom}
+.rot em{transition:opacity .42s cubic-bezier(.16,1,.3,1),transform .42s cubic-bezier(.16,1,.3,1)}
+.rot.is-out em{opacity:0;transform:translateY(-.18em)}
+.rot.is-in em{opacity:0;transform:translateY(.22em)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .hero-sub{font-size:clamp(1.02rem,1.5vw,1.22rem);color:var(--ink-dim);max-width:46ch;margin:0 0 34px;text-wrap:pretty}
 .hero-actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
 .hero-actions .btn{padding:15px 26px;font-size:16px}
@@ -326,6 +335,7 @@ h1.hero-title em{font-style:normal;color:var(--fire);display:inline-block}
 @media (prefers-reduced-motion: reduce){
   .hero-media img,.hero-glow,.credential .dot,.hero-cue svg{animation:none}
   .hero-media img{transform:scale(1.06)}
+  .hero-video{display:none}
   .hero-up{opacity:1;transform:none;animation:none}
 }
 
@@ -528,7 +538,13 @@ h2.section-title{font-size:clamp(1.9rem,4.2vw,3.2rem);font-weight:700;letter-spa
 <!-- ============ HERO · DarkProjectHero (Magic MCP) ============ -->
 <section class="hero">
   <div class="hero-media">
-    <img src="https://fongascasl.net/wp-content/uploads/tuberias-cobre-Fongasca-Majadahonda-Madrid.jpg"
+    <video class="hero-video" autoplay muted loop playsinline preload="auto"
+           poster="https://fongascasl.net/wp-content/uploads/tuberias-cobre-Fongasca-Majadahonda-Madrid.jpg"
+           aria-hidden="true" tabindex="-1">
+      <source src="assets/video/hero-llama.mp4" type="video/mp4">
+    </video>
+    <img class="hero-fallback"
+         src="https://fongascasl.net/wp-content/uploads/tuberias-cobre-Fongasca-Majadahonda-Madrid.jpg"
          alt="Instalación de tubería de cobre realizada por FONGASCA en Majadahonda" width="1920" height="1080" fetchpriority="high">
   </div>
   <div class="hero-grid-tex" aria-hidden="true"></div>
@@ -537,7 +553,7 @@ h2.section-title{font-size:clamp(1.9rem,4.2vw,3.2rem);font-weight:700;letter-spa
     <div class="hero-grid">
       <div class="hero-copy">
         <p class="credential hero-up d1"><span class="dot"></span> 30 años · Empresa autorizada <span class="bar"></span> Desde 1994</p>
-        <h1 class="hero-title hero-up d2">Gas, fontanería y<br>calefacción <em>sin sustos</em><br>en Majadahonda.</h1>
+        <h1 class="hero-title hero-up d2">Tu <span class="rot" id="heroRot" aria-hidden="true"><em>gas</em></span><br><span class="sr-only">gas, fontanería, calefacción y calderas </span>sin sustos<br>en Majadahonda.</h1>
         <p class="hero-sub hero-up d3">Instaladores autorizados desde 1994. Resolvemos fugas, instalamos calderas y certificamos tu instalación de gas con técnicos propios y garantía oficial.</p>
         <div class="hero-actions hero-up d4">
           <a class="btn btn-fire" href="tel:+34916395206">
@@ -847,6 +863,22 @@ h2.section-title{font-size:clamp(1.9rem,4.2vw,3.2rem);font-weight:700;letter-spa
       if(d.open){items.forEach(function(o){if(o!==d)o.open=false;});}
     });
   });
+
+  // Hero rotating word (progressive enhancement; static h1 reads as a full sentence)
+  var rot=document.getElementById('heroRot');
+  if(rot && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    var words=['gas','fontanería','calefacción','caldera'], i=0, em=rot.querySelector('em');
+    setInterval(function(){
+      if(document.hidden) return;
+      i=(i+1)%words.length;
+      rot.classList.add('is-out');
+      setTimeout(function(){
+        em.textContent=words[i];
+        rot.classList.remove('is-out'); rot.classList.add('is-in');
+        requestAnimationFrame(function(){requestAnimationFrame(function(){rot.classList.remove('is-in');});});
+      },420);
+    },2600);
+  }
 
   // Reveal on scroll — content already visible by default; this is enhancement only
   var reveals=document.querySelectorAll('.reveal');
