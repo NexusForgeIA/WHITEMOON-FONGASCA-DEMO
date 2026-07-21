@@ -3,8 +3,9 @@
  * Widget de captación de leads para la demo de servicio técnico
  * (gas, fontanería y calefacción en Majadahonda y Madrid).
  *
- * Al completar el flujo inserta el lead en Supabase (tabla leads_web)
- * usando la clave publishable (RLS: "Allow anonymous inserts").
+ * Al completar el flujo llama a la Edge Function pública fongasca-notify, que
+ * guarda el lead en Supabase (tabla leads_web) y avisa a la empresa por Telegram.
+ * El cliente no maneja ninguna clave: todos los secretos viven en la función.
  *
  * Sin dependencias. Se autoinyecta estilos y DOM.
  */
@@ -14,17 +15,11 @@
   window.__fonChatLoaded = true;
 
   /* ---------- Config ---------- */
-  var SUPABASE_URL = "https://mlaqtniujnvfxcvcourm.supabase.co";
-  var SUPABASE_KEY = "sb_publishable_6no6BuOgiA_2nonTJntAuQ_DTqEgrcV";
-  var LEADS_TABLE = "leads_web";
+  /* Edge Function pública: guarda el lead en leads_web y avisa por Telegram.
+     Sin claves en el cliente — viven como secrets de la función. */
+  var NOTIFY_URL = "https://mlaqtniujnvfxcvcourm.supabase.co/functions/v1/fongasca-notify";
 
   var ACCENT = "#E8742A";
-
-  /* CallMeBot — aviso por WhatsApp al recibir el lead.
-     Rellena CALLMEBOT_APIKEY con la apikey que CallMeBot asigna al número receptor.
-     Sin apikey el aviso se omite (el lead se guarda igualmente en Supabase). */
-  var CALLMEBOT_PHONE = "34643199580";
-  var CALLMEBOT_APIKEY = "";
 
   /* ---------- Flujo de servicios (categoría → subservicio) ---------- */
   var CATEGORIAS = ["🔥 Gas", "💧 Fontanería", "🌡️ Calefacción", "🔧 Otros servicios"];
@@ -342,65 +337,31 @@
 
   function finish() {
     step = "done";
-    saveLead();
-    notifyWhatsApp();
+    sendLead();
     botMsg("✅ Hemos recibido tu solicitud, " + state.nombre + ".\nNos ponemos en contacto contigo en menos de 1 hora.");
   }
 
-  /* ---------- Supabase ---------- */
-  function saveLead() {
+  /* ---------- Envío del lead (Edge Function) ---------- */
+  function sendLead() {
     var base = state.categoria + " · " + state.servicio;
     var mensaje = state.reforma
       ? base + " · " + state.m2 + " · Presupuesto: " + state.presupuesto + " · Zona: " + state.zona
       : base + " · Zona: " + state.zona;
-    var payload = {
-      nombre: state.nombre,
-      telefono: state.telefono,
-      sector: "servicio-tecnico",
-      interes: base,
-      mensaje: mensaje,
-      origen: "fongasca-demo"
-    };
     try {
-      fetch(SUPABASE_URL + "/rest/v1/" + LEADS_TABLE, {
+      fetch(NOTIFY_URL, {
         method: "POST",
-        headers: {
-          "apikey": SUPABASE_KEY,
-          "Authorization": "Bearer " + SUPABASE_KEY,
-          "Content-Type": "application/json",
-          "Prefer": "return=minimal"
-        },
-        body: JSON.stringify(payload)
-      }).then(function (r) {
-        if (!r.ok) console.warn("[Fon] No se pudo guardar el lead:", r.status);
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nombre: state.nombre,
+          telefono: state.telefono,
+          interes: base,
+          mensaje: mensaje
+        })
       }).catch(function (err) {
-        console.warn("[Fon] Error de red al guardar el lead:", err);
+        console.warn("[Fon] No se pudo enviar el lead:", err);
       });
     } catch (err) {
-      console.warn("[Fon] Excepción al guardar el lead:", err);
-    }
-  }
-
-  /* ---------- CallMeBot (aviso por WhatsApp) ---------- */
-  function notifyWhatsApp() {
-    if (!CALLMEBOT_APIKEY) {
-      console.warn("[Fon] CallMeBot sin apikey: se omite el aviso por WhatsApp.");
-      return;
-    }
-    var lines = ["Nuevo lead FONGASCA (demo)", "Categoria: " + state.categoria, "Servicio: " + state.servicio];
-    if (state.reforma) {
-      lines.push("m2: " + state.m2);
-      lines.push("Presupuesto: " + state.presupuesto);
-    }
-    lines.push("Zona: " + state.zona, "Nombre: " + state.nombre, "Telefono: " + state.telefono);
-    var url = "https://api.callmebot.com/whatsapp.php?phone=" + CALLMEBOT_PHONE +
-      "&text=" + encodeURIComponent(lines.join("\n")) + "&apikey=" + CALLMEBOT_APIKEY;
-    try {
-      fetch(url, { method: "GET", mode: "no-cors" }).catch(function (err) {
-        console.warn("[Fon] CallMeBot error de red:", err);
-      });
-    } catch (err) {
-      console.warn("[Fon] CallMeBot excepción:", err);
+      console.warn("[Fon] Excepción al enviar el lead:", err);
     }
   }
 
