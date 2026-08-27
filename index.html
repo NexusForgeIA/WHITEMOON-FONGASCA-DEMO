@@ -487,6 +487,11 @@ h2.section-title{font-size:clamp(1.9rem,4.2vw,3.2rem);font-weight:700;letter-spa
   /* La cabecera baja a 64px: el desplegable tiene que anclarse ahi, no en 74px */
   .nav.open{top:64px}
   .site-header{}
+  /* El CTA de llamada se colapsa a icono: a 375px el pill de texto ocupa
+     171px de los 360px de cabecera. El texto sigue en el DOM
+     (font-size:0), asi que el nombre accesible del enlace no cambia. */
+  .header-cta{gap:8px}
+  .header-cta .btn-fire{padding:0;width:46px;height:46px;min-height:46px;justify-content:center;gap:0;font-size:0}
   .brand img{height:44px}
   .hero{min-height:auto;padding-top:20px}
   .hero-cue{display:none}
