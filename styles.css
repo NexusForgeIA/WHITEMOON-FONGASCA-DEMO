@@ -208,7 +208,7 @@ h2.section-title{font-size:clamp(1.8rem,4vw,3rem);font-weight:700;letter-spacing
   .nav.open a,.nav.open button{padding:15px 0;border-bottom:1px solid var(--line);width:100%;text-align:left}
   .nav.open a::after,.nav.open button::after{display:none}
   .svc,.svc:nth-child(even){grid-template-columns:1fr;gap:24px}
-  .svc:nth-child(even) .svc-visual{order:0}
+  .svc-visual{order:2}
   .note-band,.faq-wrap{grid-template-columns:1fr}
   .faq-aside{position:static}
   .footer-grid{grid-template-columns:1fr 1fr}
@@ -216,6 +216,8 @@ h2.section-title{font-size:clamp(1.8rem,4vw,3rem);font-weight:700;letter-spacing
 }
 @media (max-width:600px){
   .header-inner{height:64px}
+  /* La cabecera baja a 64px: el desplegable tiene que anclarse ahi, no en 74px */
+  .nav.open{top:64px}
   .brand img{height:44px}
   .hero{min-height:auto;padding-top:20px}
   .hero-actions{flex-direction:column;align-items:stretch}
